@@ -6,7 +6,7 @@ import 'package:gap/gap.dart';
 import '../widgets/categorie_button_list_view.dart';
 import '../widgets/products_grid_view.dart';
 import '../widgets/sotre_app_bar.dart';
-import '../widgets/store_categorie_row.dart';
+import '../widgets/view_all_categories_row.dart';
 import '../widgets/store_image_slider_item.dart';
 import '../widgets/store_search_bar.dart';
 
@@ -34,7 +34,7 @@ class StoreView extends StatelessWidget {
               Gap(25),
               StoreImageSliderItem(),
               Gap(15),
-              StoreCategorieRow(),
+              ViewAllCategoriesRow(),
               Padding(
                 padding: EdgeInsets.only(left: 24),
                 child: CategorieButtonsListView(),

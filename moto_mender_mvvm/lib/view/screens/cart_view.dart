@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:gap/gap.dart';
 import 'package:moto_mender_mvvm/view/widgets/product_back_button.dart';
-
 import '../adapter/cart_product_adapter.dart';
 import '../widgets/order_details_section.dart';
 
@@ -24,7 +22,7 @@ class CartView extends StatelessWidget {
         children: [
           Expanded(
               child: ListView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             itemCount: 3,
             itemBuilder: (context, index) {
               return const CartProdcutAdapter();

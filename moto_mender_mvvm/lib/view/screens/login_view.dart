@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:moto_mender_mvvm/view/screens/store_view.dart';
 import '../widgets/custome_button.dart';
 import '../widgets/login_text_field.dart';
 import '../widgets/remember_me_row.dart';
@@ -54,6 +55,12 @@ class LoginView extends StatelessWidget {
                       ),
                       const Gap(10),
                       LoginTextField(
+                        validator: (p0) {
+                          if (p0!.isEmpty) return 'Required';
+                          if (!p0.contains('@') || !p0.endsWith('.com')) {
+                            return 'Enter a valid Email';
+                          }
+                        },
                         style: style,
                         text: 'Example@mail.com',
                         prefixIcon: Icons.email,
@@ -65,6 +72,9 @@ class LoginView extends StatelessWidget {
                       ),
                       const Gap(10),
                       LoginTextField(
+                        validator: (p0) {
+                          if (p0!.isEmpty) return 'Required';
+                        },
                         style: style,
                         text: 'Enter Password ',
                         prefixIcon: Icons.lock,
@@ -72,6 +82,13 @@ class LoginView extends StatelessWidget {
                       const Gap(20),
                       RemeberMeRow(style: style),
                       CustomeButton(
+                        onPressed: () {
+                          if (fromState.currentState!.validate()) {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const StoreView(),
+                            ));
+                          }
+                        },
                         style: style,
                         text: 'Log in',
                         padding: const EdgeInsets.symmetric(vertical: 20),

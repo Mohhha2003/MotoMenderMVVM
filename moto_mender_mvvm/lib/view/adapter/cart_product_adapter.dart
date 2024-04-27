@@ -14,7 +14,7 @@ class CartProdcutAdapter extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          padding: const EdgeInsets.only(bottom: 20, top: 15),
+          padding: const EdgeInsets.only(bottom: 20, top: 20),
           decoration: const BoxDecoration(
               border: Border(
                   bottom: BorderSide(color: Color(0xffE7E4E4), width: 1))),

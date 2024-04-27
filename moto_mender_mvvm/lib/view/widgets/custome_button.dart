@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
 class CustomeButton extends StatelessWidget {
   const CustomeButton(
       {super.key,
@@ -23,7 +21,7 @@ class CustomeButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(14), borderSide: BorderSide.none),
       minWidth: 350,
       color: const Color(0xff34D49E),
-      onPressed: () => onPressed,
+      onPressed: () => onPressed!(),
       child: Text(
         text,
         style: style.bodySmall,

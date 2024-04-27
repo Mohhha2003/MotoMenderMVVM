@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class StoreCategorieRow extends StatelessWidget {
-  const StoreCategorieRow({
+class ViewAllCategoriesRow extends StatelessWidget {
+  const ViewAllCategoriesRow({
     super.key,
   });
 
