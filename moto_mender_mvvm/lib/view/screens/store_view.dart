@@ -15,34 +15,31 @@ class StoreView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-          bottomNavigationBar:
-              BottomNavigationBar(showUnselectedLabels: true, items: const [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home_filled), label: 'Home'),
-            BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.favorite_outline), label: 'Likes'),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-          ]),
-          body: const Column(
-            children: [
-              StoreAppBar(),
-              Gap(10),
-              StoreSearchBar(),
-              Gap(25),
-              StoreImageSliderItem(),
-              Gap(15),
-              ViewAllCategoriesRow(),
-              Padding(
-                padding: EdgeInsets.only(left: 24),
-                child: CategorieButtonsListView(),
-              ),
-              Gap(30),
-              ProductsGridView(),
-            ],
-          )),
-    );
+    return Scaffold(
+        bottomNavigationBar:
+            BottomNavigationBar(showUnselectedLabels: true, items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.favorite_outline), label: 'Likes'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        ]),
+        body: const Column(
+          children: [
+            StoreAppBar(),
+            Gap(10),
+            StoreSearchBar(),
+            Gap(25),
+            StoreImageSliderItem(),
+            Gap(15),
+            ViewAllCategoriesRow(),
+            Padding(
+              padding: EdgeInsets.only(left: 24),
+              child: CategorieButtonsListView(),
+            ),
+            Gap(30),
+            ProductsGridView(),
+          ],
+        ));
   }
 }

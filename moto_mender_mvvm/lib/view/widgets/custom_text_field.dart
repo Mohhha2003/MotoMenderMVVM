@@ -1,25 +1,31 @@
 import 'package:flutter/material.dart';
 
-class LoginTextField extends StatelessWidget {
-  const LoginTextField(
+class CustomTextField extends StatelessWidget {
+  const CustomTextField(
       {super.key,
       required this.style,
       required this.text,
       this.validator,
-      required this.prefixIcon});
+      this.suffix,
+      required this.prefixIcon,
+      this.obscureText});
 
   final TextTheme style;
   final String text;
   final String? Function(String?)? validator;
   final IconData prefixIcon;
+  final bool? obscureText;
+  final Widget? suffix;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 85,
       child: TextFormField(
+        obscureText: obscureText ?? false,
         validator: validator,
         decoration: InputDecoration(
+          suffixIcon: suffix,
           hintText: text,
           prefixIcon: Icon(
             prefixIcon,

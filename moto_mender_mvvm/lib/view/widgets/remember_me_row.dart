@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'custome_check_box.dart';
+import 'custom_check_box.dart';
 
 class RemeberMeRow extends StatelessWidget {
   const RemeberMeRow({
@@ -14,7 +14,7 @@ class RemeberMeRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const CustomeCheckBox(),
+        const CustomCheckBox(),
         Text(
           'Remember Me',
           style: style.displayMedium,

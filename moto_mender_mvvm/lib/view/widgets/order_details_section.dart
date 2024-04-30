@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'cart_order_deatils_row.dart';
-import 'custome_button.dart';
+import 'custom_button.dart';
 import 'promo_code_textfield.dart';
-
-
 
 class OrderDetailsSection extends StatelessWidget {
   const OrderDetailsSection({
@@ -28,7 +26,7 @@ class OrderDetailsSection extends StatelessWidget {
           const CartOrderDetailsRow(
             text: 'Discount',
           ),
-          CustomeButton(
+          CustomButton(
             style: style,
             text: 'Check Out',
           )

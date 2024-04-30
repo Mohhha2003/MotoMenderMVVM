@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class CustomeCheckBox extends StatefulWidget {
-  const CustomeCheckBox({super.key});
+class CustomCheckBox extends StatefulWidget {
+  const CustomCheckBox({super.key});
 
   @override
-  State<CustomeCheckBox> createState() => CustomeCheckBoxState();
+  State<CustomCheckBox> createState() => CustomCheckBoxState();
 }
 
-class CustomeCheckBoxState extends State<CustomeCheckBox> {
+class CustomCheckBoxState extends State<CustomCheckBox> {
   bool isSelected = false;
   @override
   Widget build(BuildContext context) {

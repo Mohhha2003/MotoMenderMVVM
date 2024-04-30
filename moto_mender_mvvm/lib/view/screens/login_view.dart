@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:moto_mender_mvvm/view/screens/store_view.dart';
-import '../widgets/custome_button.dart';
-import '../widgets/login_text_field.dart';
+import '../widgets/custom_button.dart';
+import '../widgets/custom_text_field.dart';
 import '../widgets/remember_me_row.dart';
 
 class LoginView extends StatelessWidget {
@@ -54,7 +54,7 @@ class LoginView extends StatelessWidget {
                         style: style.headlineLarge,
                       ),
                       const Gap(10),
-                      LoginTextField(
+                      CustomTextField(
                         validator: (p0) {
                           if (p0!.isEmpty) return 'Required';
                           if (!p0.contains('@') || !p0.endsWith('.com')) {
@@ -71,7 +71,8 @@ class LoginView extends StatelessWidget {
                         style: style.headlineLarge,
                       ),
                       const Gap(10),
-                      LoginTextField(
+                      CustomTextField(
+                        obscureText: true,
                         validator: (p0) {
                           if (p0!.isEmpty) return 'Required';
                         },
@@ -81,7 +82,7 @@ class LoginView extends StatelessWidget {
                       ),
                       const Gap(20),
                       RemeberMeRow(style: style),
-                      CustomeButton(
+                      CustomButton(
                         onPressed: () {
                           if (fromState.currentState!.validate()) {
                             Navigator.of(context).push(MaterialPageRoute(

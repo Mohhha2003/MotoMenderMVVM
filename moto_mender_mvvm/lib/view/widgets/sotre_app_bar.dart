@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moto_mender_mvvm/view/screens/sign_up_view.dart';
 
 class StoreAppBar extends StatelessWidget {
   const StoreAppBar({
@@ -11,13 +12,17 @@ class StoreAppBar extends StatelessWidget {
       margin: const EdgeInsets.only(left: 24, right: 24),
       child: Row(
         children: [
-          Text(
+          const Text(
             'MotoMender',
             // style: Style.logo,
           ),
           const Spacer(),
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => SignUpView(),
+                )); 
+              },
               icon: const Icon(
                 Icons.shopping_bag_outlined,
                 size: 35,
