@@ -2,16 +2,23 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:moto_mender_mvvm/cache/cache_helper.dart';
 import 'package:moto_mender_mvvm/core/api/dio_consumer.dart';
 import 'package:moto_mender_mvvm/cubits/Auth_cubit/Auth_cubit.dart';
 import 'package:moto_mender_mvvm/cubits/store_cubit/store_cubit.dart';
 import 'package:moto_mender_mvvm/repos/auth_repo.dart';
 import 'package:moto_mender_mvvm/repos/store_repo.dart';
 import 'package:moto_mender_mvvm/view_models/login_view_model.dart';
+import 'view/screens/bottom_nav_bar.dart';
 
-void main() => runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await CacheHelper().init();
+  CacheHelper().isUserSaved();
+  runApp(const MyApp());
+}
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget { 
   const MyApp({super.key});
 
   @override
@@ -77,8 +84,11 @@ class MyApp extends StatelessWidget {
                   fontSize: 16,
                   color: Color(0xff7A869A)),
             )),
-        home: const Scaffold(
-          body: SafeArea(child: LoginViewModel()),
+        home: Scaffold(
+          body: SafeArea(
+              child: CacheHelper.rememberMe
+                  ? const BottomNavBarRoute()
+                  : const LoginViewModel()),
         ),
       ),
     );

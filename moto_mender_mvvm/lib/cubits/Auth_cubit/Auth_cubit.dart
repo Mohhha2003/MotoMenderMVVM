@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
 import 'package:meta/meta.dart';
+import 'package:moto_mender_mvvm/cache/cache_helper.dart';
 import 'package:moto_mender_mvvm/core/api/api_consumer.dart';
 import 'package:moto_mender_mvvm/core/api/endpoints.dart';
 import 'package:moto_mender_mvvm/core/errors/exceptions.dart';
@@ -18,6 +19,8 @@ class AuthCubit extends Cubit<AuthState> {
   GlobalKey<FormState> loginState = GlobalKey();
   GlobalKey<FormState> signUpState = GlobalKey();
 
+  bool rememberMe = false;
+
   TextEditingController email = TextEditingController();
   TextEditingController name = TextEditingController();
   TextEditingController phone = TextEditingController();
@@ -31,13 +34,16 @@ class AuthCubit extends Cubit<AuthState> {
   AuthModel? loginModel;
 
   Future<void> login() async {
+    emit(LoginLoading());
     final respone =
         await authRepo.login(email: email.text, password: password.text);
 
-    respone.fold(
-      (errorMessage) => emit(LoginFailed(message: errorMessage)),
-      (success) => emit(LoginSuccess()),
-    );
+    respone.fold((errorMessage) => emit(LoginFailed(message: errorMessage)),
+        (success) {
+      CacheHelper().saveData(key: 'email', value: email.text);
+      CacheHelper().saveData(key: 'password', value: password.text);
+      emit(LoginSuccess());
+    });
   }
 
   Future<void> signUp() async {
@@ -56,7 +62,7 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> forgetPassword() async {
     emit(ResetPasswordLoading());
     final response =
-        await authRepo.forgetPassword(email: resetPasswordEmail.text);  
+        await authRepo.forgetPassword(email: resetPasswordEmail.text);
 
     response.fold(
       (errorMessage) => emit(ResetPasswordFailed(message: errorMessage)),

@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
+import 'package:moto_mender_mvvm/cache/cache_helper.dart';
+import 'package:moto_mender_mvvm/view_models/login_view_model.dart';
 import '../widgets/profile_list_tile.dart';
 
 class ProfileView extends StatelessWidget {
@@ -68,6 +70,11 @@ class ProfileView extends StatelessWidget {
               text: 'Contact With Us',
             ),
             ProfileListTiles(
+              onTap: () {
+                CacheHelper().removeData(key: 'email');
+                CacheHelper().removeData(key: 'password');
+                Navigator.of(context).pop();
+              },
               backgroundColor: const Color.fromARGB(255, 243, 217, 219),
               iconColor: const Color(0xffFE3A46),
               color: const Color.fromARGB(255, 247, 182, 184),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:moto_mender_mvvm/view/screens/profile_view.dart';
-import 'package:moto_mender_mvvm/view/screens/store_view.dart';
 import 'package:moto_mender_mvvm/view_models/store_view_model.dart';
 
 class BottomNavBarRoute extends StatefulWidget {

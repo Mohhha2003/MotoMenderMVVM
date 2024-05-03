@@ -4,7 +4,6 @@ import 'package:moto_mender_mvvm/cubits/Auth_cubit/Auth_cubit.dart';
 import 'package:moto_mender_mvvm/utils/dialog_utils.dart';
 import 'package:moto_mender_mvvm/view/screens/bottom_nav_bar.dart';
 import 'package:moto_mender_mvvm/view/screens/login_view.dart';
-import 'package:moto_mender_mvvm/view_models/store_view_model.dart';
 
 class LoginViewModel extends StatelessWidget {
   const LoginViewModel({super.key});
