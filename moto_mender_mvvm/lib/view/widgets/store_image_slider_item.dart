@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
 class StoreImageSliderItem extends StatelessWidget {
   const StoreImageSliderItem({
     super.key,

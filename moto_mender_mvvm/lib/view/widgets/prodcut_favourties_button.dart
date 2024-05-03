@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class ProductFavouritesButton extends StatelessWidget {
   const ProductFavouritesButton({
     super.key,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class StoreSearchBar extends StatelessWidget {
   const StoreSearchBar({
     super.key,

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
+import 'package:moto_mender_mvvm/models/product_request_model/product.dart';
 import 'package:moto_mender_mvvm/view/widgets/categorie_button_list_view.dart';
 import '../widgets/prodcut_favourties_button.dart';
 import '../widgets/product_back_button.dart';
@@ -9,12 +10,16 @@ import '../widgets/product_bottom_nav_bar.dart';
 import '../widgets/ratting_prodcut_row.dart';
 
 class ProductView extends StatelessWidget {
-  const ProductView({super.key});
+  const ProductView({super.key, required this.product});
+
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const ProductBottomNavBar(),
+      bottomNavigationBar: ProductBottomNavBar(
+        product: product,
+      ),
       backgroundColor: const Color(0xffDFDEDE),
       body: CustomScrollView(
         slivers: [
@@ -33,9 +38,9 @@ class ProductView extends StatelessWidget {
               background: Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 88, vertical: 70),
-                child: Image.asset(
-                  'assets/image/product.png',
-                  fit: BoxFit.cover,
+                child: Image.network(
+                  '${product.imagePath}',
+                  fit: BoxFit.contain,
                 ),
               ),
             ),
@@ -53,18 +58,20 @@ class ProductView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'MicroFiber Cleaning',
+                    '${product.name}',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const Gap(10),
-                  const RattingReviewsProdcutRow(),
+                  RattingReviewsProdcutRow(product: product),
                   const Gap(20),
                   Text(
-                    'Microfiber Cleaning Cloth Grey - 12 Packs 12.5"x12.5" High Performance - 1200 Washes, Ultra Absorbent Towels Weave Grime & Liquid for Streak - Free Mirror Shine -Car Washing Cloth',
+                    '${product.description}',
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   const Gap(20),
-                  const CategorieButtonsListView()
+                  CategorieButtonsListView(
+                    categories: List.filled(2, '${product.category}'),
+                  )
                 ],
               ),
             ),

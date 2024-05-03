@@ -8,9 +8,11 @@ class CustomTextField extends StatelessWidget {
       this.validator,
       this.suffix,
       required this.prefixIcon,
-      this.obscureText});
+      this.obscureText,
+      required this.controller});
 
   final TextTheme style;
+  final TextEditingController controller;
   final String text;
   final String? Function(String?)? validator;
   final IconData prefixIcon;
@@ -22,6 +24,7 @@ class CustomTextField extends StatelessWidget {
     return SizedBox(
       height: 85,
       child: TextFormField(
+        controller: controller,
         obscureText: obscureText ?? false,
         validator: validator,
         decoration: InputDecoration(

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:moto_mender_mvvm/models/product_request_model/product.dart';
 
 class RattingReviewsProdcutRow extends StatelessWidget {
   const RattingReviewsProdcutRow({
     super.key,
+    required this.product,
   });
+
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -15,20 +19,20 @@ class RattingReviewsProdcutRow extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               border: Border.all(width: .5)),
-          child: const Row(
+          child: Row(
             children: [
-              Icon(
+              const Icon(
                 Icons.star,
                 color: Colors.amber,
               ),
               Text(
-                '4.8',
+                '${product.ratingAverage}',
               )
             ],
           ),
         ),
         const Gap(30),
-        Text('28 reviews', style: Theme.of(context).textTheme.labelSmall),
+        Text('${product.id}', style: Theme.of(context).textTheme.labelSmall),
       ],
     );
   }

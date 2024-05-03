@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:moto_mender_mvvm/view/screens/cart_view.dart';
+import 'package:moto_mender_mvvm/models/product_request_model/product.dart';
 
 class ProductBottomNavBar extends StatelessWidget {
   const ProductBottomNavBar({
     super.key,
+    required this.product,
   });
+
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +19,7 @@ class ProductBottomNavBar extends StatelessWidget {
         child: Row(
           children: [
             Text(
-              '164.00 EGP',
+              '${product.price} EGP',
               style: Theme.of(context).textTheme.titleMedium,
             ),
             const Spacer(),
@@ -27,9 +30,9 @@ class ProductBottomNavBar extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                   borderSide: BorderSide.none),
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => CartView(),
-                ));
+                // Navigator.of(context).push(MaterialPageRouwte(
+                //   builder: (context) => CartView(),
+                // ));
               },
               child: Text(
                 'Add To Cart',

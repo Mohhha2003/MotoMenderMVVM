@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
 class CartOrderDetailsRow extends StatelessWidget {
   const CartOrderDetailsRow({
     super.key,

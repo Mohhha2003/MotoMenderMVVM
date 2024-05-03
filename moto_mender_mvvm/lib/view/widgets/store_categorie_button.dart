@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:moto_mender_mvvm/view/screens/profile_view.dart';
 
 class StoreCategorieButton extends StatelessWidget {
   const StoreCategorieButton({
     super.key,
+    required this.text,
   });
 
+  final String text;
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
@@ -14,13 +15,9 @@ class StoreCategorieButton extends StatelessWidget {
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(5)),
         color: const Color(0xff0CBB80),
-        onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => ProfileView(),
-          ));
-        },
+        onPressed: () {},
         child: Text(
-          'Exterior Care',
+          text,
           style: Theme.of(context).textTheme.bodySmall,
         ));
   }

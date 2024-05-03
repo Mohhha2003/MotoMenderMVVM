@@ -23,7 +23,7 @@ class CartView extends StatelessWidget {
           Expanded(
               child: ListView.builder(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            itemCount: 3,
+            itemCount: 7,
             itemBuilder: (context, index) {
               return const CartProdcutAdapter();
             },

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class PromoCodeTextFiled extends StatelessWidget {
   const PromoCodeTextFiled({
     super.key,

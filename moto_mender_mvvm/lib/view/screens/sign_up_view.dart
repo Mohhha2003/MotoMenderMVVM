@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:moto_mender_mvvm/cubits/Auth_cubit/Auth_cubit.dart';
 import 'package:moto_mender_mvvm/view/widgets/custom_button.dart';
 import 'package:moto_mender_mvvm/view/widgets/custom_text_field.dart';
 
 class SignUpView extends StatelessWidget {
-  SignUpView({super.key});
-
-  GlobalKey<FormState> formState = GlobalKey();
+  const SignUpView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class SignUpView extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Form(
-            key: formState,
+            key: context.read<AuthCubit>().signUpState,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -47,6 +47,7 @@ class SignUpView extends StatelessWidget {
                 ),
                 const Gap(10),
                 CustomTextField(
+                    controller: context.read<AuthCubit>().name,
                     validator: (p0) {
                       if (p0!.isEmpty) return 'Requried';
                     },
@@ -59,6 +60,7 @@ class SignUpView extends StatelessWidget {
                 ),
                 const Gap(10),
                 CustomTextField(
+                    controller: context.read<AuthCubit>().email,
                     validator: (p0) {
                       if (p0!.isEmpty) return 'Requried';
                     },
@@ -71,6 +73,7 @@ class SignUpView extends StatelessWidget {
                 ),
                 const Gap(10),
                 CustomTextField(
+                    controller: context.read<AuthCubit>().password,
                     validator: (p0) {
                       if (p0!.isEmpty) return 'Requried';
                     },
@@ -87,6 +90,7 @@ class SignUpView extends StatelessWidget {
                 ),
                 const Gap(10),
                 CustomTextField(
+                    controller: context.read<AuthCubit>().reTypePassword,
                     validator: (p0) {
                       if (p0!.isEmpty) return 'Requried';
                     },
@@ -97,15 +101,50 @@ class SignUpView extends StatelessWidget {
                         icon: const Icon(Icons.remove_red_eye)),
                     text: 'Re Enter Password',
                     prefixIcon: Icons.person),
-                const Gap(30),
-                CustomButton(
-                  onPressed: () {
-                    if (formState.currentState!.validate()) {}
-                  },
-                  style: style,
-                  text: 'Sign Up',
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                )
+                Text(
+                  'Phone',
+                  style: style.titleLarge,
+                ),
+                const Gap(10),
+                CustomTextField(
+                    controller: context.read<AuthCubit>().phone,
+                    validator: (p0) {
+                      if (p0!.isEmpty) return 'Requried';
+                    },
+                    style: style,
+                    text: '+20 0100 000 000',
+                    prefixIcon: Icons.phone),
+                Text(
+                  'Address',
+                  style: style.titleLarge,
+                ),
+                const Gap(10),
+                CustomTextField(
+                    controller: context.read<AuthCubit>().address,
+                    validator: (p0) {
+                      if (p0!.isEmpty) return 'Requried';
+                    },
+                    style: style,
+                    text: 'Address',
+                    prefixIcon: Icons.home),
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: CustomButton(
+                    onPressed: () {
+                      if (context
+                          .read<AuthCubit>()
+                          .signUpState
+                          .currentState!
+                          .validate()) {
+                        context.read<AuthCubit>().signUp();
+                      }
+                    },
+                    style: style,
+                    text: 'Sign Up',
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                  ),
+                ),
+                const Gap(20)
               ],
             ),
           ),
