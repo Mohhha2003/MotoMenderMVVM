@@ -17,7 +17,7 @@ class AuthCubit extends Cubit<AuthState> {
   bool rememberMe = false;
 
   TextEditingController email = TextEditingController();
-  TextEditingController name = TextEditingController();
+  TextEditingController name = TextEditingController();   
   TextEditingController phone = TextEditingController();
   TextEditingController address = TextEditingController();
   TextEditingController password = TextEditingController();
@@ -89,7 +89,7 @@ class AuthCubit extends Cubit<AuthState> {
         email: resetPasswordEmail.text);
 
     response.fold(
-      (errorMessage) => emit(ResetPasswordFailed(message: errorMessage)),
+      (errorMessage) => emit(ResetPasswordFailed(message: errorMessage)), 
       (success) => emit(ResetPasswordSuccess(message: success)),
     );
   }

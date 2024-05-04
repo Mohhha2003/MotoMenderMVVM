@@ -15,7 +15,7 @@ class NewPasswordViewModel extends StatelessWidget {
           if (state is ResetPasswordFailed) {
             showErrorSnackBar(text: state.message, context: context);
           } else if (state is ResetPasswordSuccess) {
-            Navigator.of(context).pushReplacement(MaterialPageRoute(
+            Navigator.of(context).pushReplacement(MaterialPageRoute(    
               builder: (context) => const LoginViewModel(),
             ));
           }
