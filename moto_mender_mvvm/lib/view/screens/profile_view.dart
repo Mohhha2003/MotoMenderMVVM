@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:moto_mender_mvvm/cache/cache_helper.dart';
+import 'package:moto_mender_mvvm/models/auth_model/user..dart';
 import 'package:moto_mender_mvvm/view_models/login_view_model.dart';
 import '../widgets/profile_list_tile.dart';
 
 class ProfileView extends StatelessWidget {
-  const ProfileView({super.key});
+  ProfileView({super.key});
+
+  final User user = CacheHelper.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +36,13 @@ class ProfileView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Mohamed Alaa Abdo',
+                      '${user.name}',
                       style: style.titleLarge,
                     ),
                     const Gap(5),
-                    const Text(
-                      '+20 17514703',
-                      style: TextStyle(
+                    Text(
+                      '${user.phone}',
+                      style: const TextStyle(
                           color: Color(0xffBDBDBD),
                           fontWeight: FontWeight.w500,
                           fontSize: 14),
@@ -73,7 +76,9 @@ class ProfileView extends StatelessWidget {
               onTap: () {
                 CacheHelper().removeData(key: 'email');
                 CacheHelper().removeData(key: 'password');
-                Navigator.of(context).pop();
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) => const LoginViewModel(),
+                ));
               },
               backgroundColor: const Color.fromARGB(255, 243, 217, 219),
               iconColor: const Color(0xffFE3A46),

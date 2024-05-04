@@ -23,7 +23,7 @@ class _BottomNavBarRouteState extends State<BottomNavBarRoute> {
       case 2:
         break;
       case 3:
-        currentWidget = const ProfileView();
+        currentWidget =  ProfileView();
         break;
       default:
         currentWidget = const StoreViewModel();

@@ -1,11 +1,23 @@
+import 'package:dio/dio.dart';
+import 'package:moto_mender_mvvm/core/api/dio_consumer.dart';
+import 'package:moto_mender_mvvm/models/auth_model/user..dart';
+import 'package:moto_mender_mvvm/repos/auth_repo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CacheHelper {
   static late SharedPreferences sharedPreferences;
   static bool rememberMe = false;
+  static late User currentUser;
 
-  bool isUserSaved() {
-    return rememberMe = sharedPreferences.containsKey('email');
+  Future<bool> isUserSaved() async {
+    rememberMe = sharedPreferences.containsKey('email');
+    if (rememberMe) {
+      final respone = await AuthRepo(api: DioConsumer(dio: Dio())).login(
+          email: getDataString(key: 'email')!,
+          password: getDataString(key: 'password')!);
+      respone.fold((l) => null, (success) => currentUser = success.user!);
+    }
+    return rememberMe;
   }
 
   init() async {

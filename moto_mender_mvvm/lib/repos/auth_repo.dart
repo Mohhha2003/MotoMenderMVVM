@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter/foundation.dart';
 import 'package:moto_mender_mvvm/core/api/api_consumer.dart';
 import 'package:moto_mender_mvvm/core/api/endpoints.dart';
 import 'package:moto_mender_mvvm/core/errors/exceptions.dart';
@@ -42,11 +43,27 @@ class AuthRepo {
     }
   }
 
-  Future<Either<String, bool>> forgetPassword({required String email}) async {
+  Future<Either<String, String>> forgetPassword({required String email}) async {
     try {
       final respone =
           await api.post(EndPoint.forgetPassword, data: {ApiKey.email: email});
-      return const Right(true);
+      return Right(respone['otp']);
+    } on ServerException catch (e) {
+      return Left(e.errorModel.errorMessage);
+    }
+  }
+
+  Future<Either<String, String>> resetPassword(
+      {required String newPassword,
+      required String otp,
+      required String email}) async {
+    try {
+      final response = await api.patch(EndPoint.resetPassword, data: {
+        ApiKey.email: email,
+        ApiKey.otp: otp,
+        ApiKey.newPassword: newPassword,
+      });
+      return Right(response['message']);
     } on ServerException catch (e) {
       return Left(e.errorModel.errorMessage);
     }

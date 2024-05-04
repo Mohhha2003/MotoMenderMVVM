@@ -1,11 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:http/http.dart';
 import 'package:meta/meta.dart';
 import 'package:moto_mender_mvvm/cache/cache_helper.dart';
-import 'package:moto_mender_mvvm/core/api/api_consumer.dart';
-import 'package:moto_mender_mvvm/core/api/endpoints.dart';
-import 'package:moto_mender_mvvm/core/errors/exceptions.dart';
 import 'package:moto_mender_mvvm/models/auth_model/auth_model.dart';
 import 'package:moto_mender_mvvm/repos/auth_repo.dart';
 
@@ -18,7 +14,6 @@ class AuthCubit extends Cubit<AuthState> {
 
   GlobalKey<FormState> loginState = GlobalKey();
   GlobalKey<FormState> signUpState = GlobalKey();
-
   bool rememberMe = false;
 
   TextEditingController email = TextEditingController();
@@ -30,6 +25,9 @@ class AuthCubit extends Cubit<AuthState> {
 
   //  RESITING PASSWORD
   TextEditingController resetPasswordEmail = TextEditingController();
+  TextEditingController newPassword = TextEditingController();
+
+  late String otp;
 
   AuthModel? loginModel;
 
@@ -40,8 +38,11 @@ class AuthCubit extends Cubit<AuthState> {
 
     respone.fold((errorMessage) => emit(LoginFailed(message: errorMessage)),
         (success) {
-      CacheHelper().saveData(key: 'email', value: email.text);
-      CacheHelper().saveData(key: 'password', value: password.text);
+      CacheHelper.currentUser = success.user!;
+      if (rememberMe) {
+        CacheHelper().saveData(key: 'email', value: email.text);
+        CacheHelper().saveData(key: 'password', value: password.text);
+      }
       emit(LoginSuccess());
     });
   }
@@ -60,13 +61,36 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> forgetPassword() async {
-    emit(ResetPasswordLoading());
+    emit(ForgetPasswordLoading());
     final response =
         await authRepo.forgetPassword(email: resetPasswordEmail.text);
 
     response.fold(
+        (errorMessage) => emit(ForgetPasswordFailed(message: errorMessage)),
+        (verficationOTP) {
+      otp = verficationOTP;
+      emit(ForgetPasswordSuccess());
+    });
+  }
+
+  bool checkOTP({required String userOTP}) {
+    if (userOTP == otp) {
+      emit(OTPMatch());
+      return true;
+    }
+    emit(OTPWrong());
+    return false;
+  }
+
+  Future<void> resetPassword() async {
+    final response = await authRepo.resetPassword(
+        newPassword: newPassword.text,
+        otp: otp,
+        email: resetPasswordEmail.text);
+
+    response.fold(
       (errorMessage) => emit(ResetPasswordFailed(message: errorMessage)),
-      (success) => emit(ResetPasswordSuccess()),
+      (success) => emit(ResetPasswordSuccess(message: success)),
     );
   }
 }
