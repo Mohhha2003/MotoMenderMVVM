@@ -24,6 +24,8 @@ class StoreView extends StatelessWidget {
       child: CustomScrollView(
         slivers: [
           const SliverAppBar(
+            backgroundColor: Colors.transparent,
+            pinned: true,
             title: Text('MotoMender'),
             actions: [CartViewButton()],
           ),

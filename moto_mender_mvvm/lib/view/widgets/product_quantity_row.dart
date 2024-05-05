@@ -7,9 +7,9 @@ import 'package:moto_mender_mvvm/view_models/cart_view_model/cubit/cart_cubit_cu
 
 class ProductCartQuantityRow extends StatelessWidget {
   const ProductCartQuantityRow({
-    Key? key,
+    super.key,
     required this.product,
-  }) : super(key: key);
+  });
 
   final Product product;
 
@@ -32,7 +32,7 @@ class ProductCartQuantityRow extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Text(
-                '${product.orderQuantity}', // Use the product's orderQuantity
+                '${product.orderQuantity}',
                 style: style.bodyLarge,
               ),
             ),

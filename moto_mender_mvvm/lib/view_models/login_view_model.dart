@@ -20,8 +20,10 @@ class LoginViewModel extends StatelessWidget {
             backgroundColor: Colors.red,
           ));
         } else if (state is LoginSuccess) {
-          Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => const BottomNavBarViewModel()));
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                  builder: (context) => const BottomNavBarViewModel()),
+              (route) => false);
         } else if (state is LoginLoading) {
           showLoading(context);
         }
