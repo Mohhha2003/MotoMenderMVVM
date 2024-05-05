@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moto_mender_mvvm/view/screens/profile_view.dart';
+import 'package:moto_mender_mvvm/view_models/favorties_view_model/favorites_view_model.dart';
 import 'package:moto_mender_mvvm/view_models/store_view_model.dart';
 
 class BottomNavBarViewModel extends StatefulWidget {
@@ -21,6 +22,7 @@ class _BottomNavBarViewModelState extends State<BottomNavBarViewModel> {
       case 1:
         break;
       case 2:
+        currentWidget = FavortiesViewModel();
         break;
       case 3:
         currentWidget = ProfileView();
@@ -46,7 +48,9 @@ class _BottomNavBarViewModelState extends State<BottomNavBarViewModel> {
                 icon: Icon(Icons.home_filled), label: 'Home'),
             BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.favorite_outline), label: 'Likes'),
+                activeIcon: Icon(Icons.favorite),
+                icon: Icon(Icons.favorite_outline),
+                label: 'Likes'),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
           ]),
       body: SafeArea(child: currentWidget),

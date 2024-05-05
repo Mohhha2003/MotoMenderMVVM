@@ -26,12 +26,14 @@ class ProductView extends StatelessWidget {
           SliverAppBar(
             backgroundColor: const Color(0xffDFDEDE),
             automaticallyImplyLeading: false,
-            actions: const [
-              Gap(22),
-              ProductBackButton(),
-              Spacer(),
-              ProductFavouritesButton(),
-              Gap(22)
+            actions: [
+              const Gap(22),
+              const ProductBackButton(),
+              const Spacer(),
+              ProductFavouritesButton(
+                productId: product.id!,
+              ),
+              const Gap(22)
             ],
             expandedHeight: 390,
             flexibleSpace: FlexibleSpaceBar(

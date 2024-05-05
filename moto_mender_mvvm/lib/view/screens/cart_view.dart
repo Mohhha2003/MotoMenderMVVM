@@ -2,9 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gap/gap.dart';
 import 'package:moto_mender_mvvm/models/product.dart';
+import 'package:moto_mender_mvvm/view/widgets/empty_widgets.dart';
 import 'package:moto_mender_mvvm/view/widgets/product_back_button.dart';
 import 'package:moto_mender_mvvm/view_models/cart_view_model/cubit/cart_cubit_cubit.dart';
 import '../adapter/cart_product_adapter.dart';
@@ -25,22 +24,7 @@ class CartView extends StatelessWidget {
         leading: const ProductBackButton(),
       ),
       body: products.isEmpty
-          ? Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    'assets/image/svg/empty.svg',
-                    height: MediaQuery.of(context).size.height * .3,
-                  ),
-                  const Gap(20),
-                  Text(
-                    'Cart is Empty',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                ],
-              ),
-            )
+          ? const EmptyWidget()
           : Column(
               children: [
                 Expanded(
