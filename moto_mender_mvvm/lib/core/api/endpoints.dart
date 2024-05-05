@@ -6,6 +6,8 @@ class EndPoint {
   static String signUp = '/auth/register';
   static String forgetPassword = '/auth/forgetPassword';
   static String resetPassword = '/auth/resetPassword';
+  static String verfiyEmail = '/auth/verfiyEmail';
+  static String updateAccount = '/auth/updateAccount';
 }
 
 class ApiKey {
@@ -17,6 +19,8 @@ class ApiKey {
   static String address = 'address';
   static String phone = 'phone';
 
+  static String id = "id";
+  static String isVerified = "isVerified";
   static String newPassword = 'newPassword';
   static String otp = 'otp';
 }

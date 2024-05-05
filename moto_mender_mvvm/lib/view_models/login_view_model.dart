@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moto_mender_mvvm/cubits/Auth_cubit/Auth_cubit.dart';
-import 'package:moto_mender_mvvm/utils/dialog_utils.dart';
-import 'package:moto_mender_mvvm/view/screens/bottom_nav_bar.dart';
+import 'package:moto_mender_mvvm/utils/functions/dialog_utils.dart';
+import 'package:moto_mender_mvvm/view_models/bottom_nav_bar_view_model.dart';
 import 'package:moto_mender_mvvm/view/screens/login_view.dart';
 
 class LoginViewModel extends StatelessWidget {
@@ -21,7 +21,7 @@ class LoginViewModel extends StatelessWidget {
           ));
         } else if (state is LoginSuccess) {
           Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => const BottomNavBarRoute()));
+              builder: (context) => const BottomNavBarViewModel()));
         } else if (state is LoginLoading) {
           showLoading(context);
         }

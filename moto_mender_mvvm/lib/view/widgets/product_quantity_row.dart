@@ -1,34 +1,51 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'prodcut_quantity_button.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moto_mender_mvvm/models/product.dart';
+import 'package:moto_mender_mvvm/view/widgets/prodcut_quantity_button.dart';
+import 'package:moto_mender_mvvm/view_models/cart_view_model/cubit/cart_cubit_cubit.dart';
 
 class ProductCartQuantityRow extends StatelessWidget {
   const ProductCartQuantityRow({
-    super.key,
-  });
+    Key? key,
+    required this.product,
+  }) : super(key: key);
+
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
     var style = Theme.of(context).textTheme;
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        const ProdcutQuantityButton(
-          color: Color(0xffD6D6D6),
-          icon: Icons.remove,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Text(
-            '2',
-            style: style.bodyLarge,
-          ),
-        ),
-        const ProdcutQuantityButton(
-          color: Color(0xff34D49E),
-          icon: Icons.add,
-        ),
-      ],
+
+    return BlocBuilder<CartCubit, CartCubitState>(
+      builder: (context, state) {
+        return Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            ProdcutQuantityButton(
+              onTap: () {
+                context.read<CartCubit>().decrementQuantity(product: product);
+              },
+              color: const Color(0xffD6D6D6),
+              icon: Icons.remove,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Text(
+                '${product.orderQuantity}', // Use the product's orderQuantity
+                style: style.bodyLarge,
+              ),
+            ),
+            ProdcutQuantityButton(
+              onTap: () {
+                context.read<CartCubit>().incrementQuantity(product: product);
+              },
+              color: const Color(0xff34D49E),
+              icon: Icons.add,
+            ),
+          ],
+        );
+      },
     );
   }
 }

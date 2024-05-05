@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
 import 'package:moto_mender_mvvm/cache/cache_helper.dart';
@@ -12,12 +13,16 @@ class AuthCubit extends Cubit<AuthState> {
 
   final AuthRepo authRepo;
 
-  GlobalKey<FormState> loginState = GlobalKey();
-  GlobalKey<FormState> signUpState = GlobalKey();
+  // LOGIN CONTORLLERS
+
   bool rememberMe = false;
+  TextEditingController loginEmail = TextEditingController();
+  TextEditingController loginPassword = TextEditingController();
+
+  //   SIGNUP CONTROLLERS
 
   TextEditingController email = TextEditingController();
-  TextEditingController name = TextEditingController();   
+  TextEditingController name = TextEditingController();
   TextEditingController phone = TextEditingController();
   TextEditingController address = TextEditingController();
   TextEditingController password = TextEditingController();
@@ -33,8 +38,8 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> login() async {
     emit(LoginLoading());
-    final respone =
-        await authRepo.login(email: email.text, password: password.text);
+    final respone = await authRepo.login(
+        email: loginEmail.text, password: loginPassword.text);
 
     respone.fold((errorMessage) => emit(LoginFailed(message: errorMessage)),
         (success) {
@@ -43,6 +48,8 @@ class AuthCubit extends Cubit<AuthState> {
         CacheHelper().saveData(key: 'email', value: email.text);
         CacheHelper().saveData(key: 'password', value: password.text);
       }
+      loginEmail.clear();
+      loginPassword.clear();
       emit(LoginSuccess());
     });
   }
@@ -55,8 +62,18 @@ class AuthCubit extends Cubit<AuthState> {
         phone: phone.text,
         address: address.text);
     response.fold(
-      (errorMessage) => SignUpFailed(message: errorMessage),
-      (success) => emit(SignUpSucces()),
+      (errorMessage) => emit(SignUpFailed(message: errorMessage)),
+      (success) {
+        otp = success.user!.emailVerify!;
+        CacheHelper.currentUser = success.user!;
+
+        name.clear();
+        password.clear();
+        reTypePassword.clear();
+        phone.clear();
+        address.clear();
+        emit(SignUpSucces());
+      },
     );
   }
 
@@ -73,13 +90,14 @@ class AuthCubit extends Cubit<AuthState> {
     });
   }
 
-  bool checkOTP({required String userOTP}) {
-    if (userOTP == otp) {
-      emit(OTPMatch());
-      return true;
+  void checkOTP({required String userOTP, required isNewUser}) {
+    if (isNewUser && userOTP == otp) {
+      verfiyEmail();
+    } else if (isNewUser == false && userOTP == otp) {
+      emit(FortgetPassowrdOTPMatch());
+    } else {
+      emit(OTPWrong(message: 'Wrong OTP'));
     }
-    emit(OTPWrong());
-    return false;
   }
 
   Future<void> resetPassword() async {
@@ -89,8 +107,16 @@ class AuthCubit extends Cubit<AuthState> {
         email: resetPasswordEmail.text);
 
     response.fold(
-      (errorMessage) => emit(ResetPasswordFailed(message: errorMessage)), 
+      (errorMessage) => emit(ResetPasswordFailed(message: errorMessage)),
       (success) => emit(ResetPasswordSuccess(message: success)),
+    );
+  }
+
+  Future<void> verfiyEmail() async {
+    final response = await authRepo.verfiyEmail(email: email.text);
+    response.fold(
+      (errorMessage) => emit(OTPWrong(message: errorMessage)),
+      (success) => emit(SingUpOTPMatch(message: success)),
     );
   }
 }

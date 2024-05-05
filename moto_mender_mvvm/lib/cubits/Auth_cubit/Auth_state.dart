@@ -27,6 +27,12 @@ final class SignUpFailed extends AuthState {
   SignUpFailed({required this.message});
 }
 
+final class SingUpOTPMatch extends AuthState {
+  final String message;
+
+  SingUpOTPMatch({required this.message});
+}
+
 //    RESITING PASSWORD
 
 final class ForgetPasswordFailed extends AuthState {
@@ -39,9 +45,7 @@ final class ForgetPasswordLoading extends AuthState {}
 
 final class ForgetPasswordSuccess extends AuthState {}
 
-final class OTPMatch extends AuthState {}
-
-final class OTPWrong extends AuthState {}
+final class FortgetPassowrdOTPMatch extends AuthState {}
 
 final class ResetPasswordFailed extends AuthState {
   final String message;
@@ -56,3 +60,10 @@ final class ResetPasswordSuccess extends AuthState {
 }
 
 final class ResetPasswordLoading extends AuthState {}
+
+final class OTPWrong extends AuthState {
+  final String message;
+
+  OTPWrong({required this.message});
+
+}

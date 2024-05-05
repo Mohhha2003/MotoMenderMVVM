@@ -8,8 +8,9 @@ import 'package:moto_mender_mvvm/cubits/Auth_cubit/Auth_cubit.dart';
 import 'package:moto_mender_mvvm/cubits/store_cubit/store_cubit.dart';
 import 'package:moto_mender_mvvm/repos/auth_repo.dart';
 import 'package:moto_mender_mvvm/repos/store_repo.dart';
+import 'package:moto_mender_mvvm/view_models/cart_view_model/cubit/cart_cubit_cubit.dart';
 import 'package:moto_mender_mvvm/view_models/login_view_model.dart';
-import 'view/screens/bottom_nav_bar.dart';
+import 'view_models/bottom_nav_bar_view_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
             create: (context) =>
                 AuthCubit(AuthRepo(api: DioConsumer(dio: Dio())))),
+        BlocProvider(create: (context) => CartCubit())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -87,7 +89,7 @@ class MyApp extends StatelessWidget {
         home: Scaffold(
           body: SafeArea(
               child: CacheHelper.rememberMe
-                  ? const BottomNavBarRoute()
+                  ? const BottomNavBarViewModel()
                   : const LoginViewModel()),
         ),
       ),

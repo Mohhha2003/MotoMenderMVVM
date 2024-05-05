@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:moto_mender_mvvm/core/api/dio_consumer.dart';
-import 'package:moto_mender_mvvm/models/auth_model/user..dart';
+import 'package:moto_mender_mvvm/models/user.dart';
 import 'package:moto_mender_mvvm/repos/auth_repo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

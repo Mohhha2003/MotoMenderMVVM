@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:moto_mender_mvvm/cubits/Auth_cubit/Auth_cubit.dart';
+import 'package:moto_mender_mvvm/utils/functions/navigation_with_slide.dart';
 import 'package:moto_mender_mvvm/view_models/sign_up_view_model.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_text_field.dart';
@@ -10,6 +11,8 @@ import '../widgets/remember_me_row.dart';
 
 class LoginView extends StatelessWidget {
   LoginView({super.key});
+
+  final GlobalKey<FormState> loginState = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +50,7 @@ class LoginView extends StatelessWidget {
                   ),
                   const Gap(30),
                   Form(
-                      key: context.read<AuthCubit>().loginState,
+                      key: loginState,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -57,7 +60,7 @@ class LoginView extends StatelessWidget {
                           ),
                           const Gap(10),
                           CustomTextField(
-                            controller: context.read<AuthCubit>().email,
+                            controller: context.read<AuthCubit>().loginEmail,
                             validator: (p0) {
                               if (p0!.isEmpty) return 'Required';
                               if (!p0.contains('@') || !p0.endsWith('.com')) {
@@ -75,7 +78,7 @@ class LoginView extends StatelessWidget {
                           ),
                           const Gap(10),
                           CustomTextField(
-                            controller: context.read<AuthCubit>().password,
+                            controller: context.read<AuthCubit>().loginPassword,
                             obscureText: true,
                             validator: (p0) {
                               if (p0!.isEmpty) return 'Required';
@@ -88,11 +91,7 @@ class LoginView extends StatelessWidget {
                           RemeberMeRow(style: style),
                           CustomButton(
                             onPressed: () async {
-                              if (context
-                                  .read<AuthCubit>()
-                                  .loginState
-                                  .currentState!
-                                  .validate()) {
+                              if (loginState.currentState!.validate()) {
                                 context.read<AuthCubit>().login();
                               }
                             },
@@ -145,9 +144,7 @@ class LoginView extends StatelessWidget {
                       const Gap(5),
                       InkWell(
                         onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const SignUpViewModel(),
-                          ));
+                          navigationWithSlide(context, const SignUpViewModel());
                         },
                         child: const Text(
                           'Sign Up',

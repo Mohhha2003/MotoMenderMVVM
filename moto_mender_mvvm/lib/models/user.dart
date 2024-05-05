@@ -11,6 +11,7 @@ class User {
   int? v;
   DateTime? resetPasswordExpires;
   String? resetPasswordOtp;
+  String? emailVerify;
 
   User({
     this.id,
@@ -25,6 +26,7 @@ class User {
     this.v,
     this.resetPasswordExpires,
     this.resetPasswordOtp,
+    this.emailVerify
   });
 
   factory User.fromJson(Map<String, dynamic> json) => User(
@@ -42,7 +44,8 @@ class User {
             ? null
             : DateTime.parse(json['resetPasswordExpires'] as String),
         resetPasswordOtp: json['resetPasswordOTP'] as String?,
-      );
+        emailVerify: json['emailVerify'] as String ?
+       );
 
   Map<String, dynamic> toJson() => {
         '_id': id,

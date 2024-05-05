@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:moto_mender_mvvm/models/product_request_model/product.dart';
+import 'package:moto_mender_mvvm/models/product.dart';
 
 class RattingReviewsProdcutRow extends StatelessWidget {
   const RattingReviewsProdcutRow({

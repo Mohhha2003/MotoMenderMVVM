@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:moto_mender_mvvm/cache/cache_helper.dart';
-import 'package:moto_mender_mvvm/models/auth_model/user..dart';
+import 'package:moto_mender_mvvm/models/user.dart';
 import 'package:moto_mender_mvvm/view_models/login_view_model.dart';
 import '../widgets/profile_list_tile.dart';
 

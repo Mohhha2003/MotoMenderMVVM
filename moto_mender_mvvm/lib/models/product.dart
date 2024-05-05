@@ -7,6 +7,7 @@ class Product {
   String? imagePath;
   int? ratingAverage;
   String? productId;
+  int? orderQuantity;
 
   Product({
     this.id,

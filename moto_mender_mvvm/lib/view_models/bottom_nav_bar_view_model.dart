@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:moto_mender_mvvm/view/screens/profile_view.dart';
 import 'package:moto_mender_mvvm/view_models/store_view_model.dart';
 
-class BottomNavBarRoute extends StatefulWidget {
-  const BottomNavBarRoute({super.key});
+class BottomNavBarViewModel extends StatefulWidget {
+  const BottomNavBarViewModel({super.key});
 
   @override
-  State<BottomNavBarRoute> createState() => _BottomNavBarRouteState();
+  State<BottomNavBarViewModel> createState() => _BottomNavBarViewModelState();
 }
 
-class _BottomNavBarRouteState extends State<BottomNavBarRoute> {
+class _BottomNavBarViewModelState extends State<BottomNavBarViewModel> {
   Widget currentWidget = const StoreViewModel();
   int index = 0;
 
@@ -23,7 +23,7 @@ class _BottomNavBarRouteState extends State<BottomNavBarRoute> {
       case 2:
         break;
       case 3:
-        currentWidget =  ProfileView();
+        currentWidget = ProfileView();
         break;
       default:
         currentWidget = const StoreViewModel();

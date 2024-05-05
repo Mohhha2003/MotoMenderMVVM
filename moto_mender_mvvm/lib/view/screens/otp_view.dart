@@ -6,10 +6,11 @@ import 'package:moto_mender_mvvm/cubits/Auth_cubit/Auth_cubit.dart';
 import 'package:moto_mender_mvvm/view/widgets/custom_button.dart';
 
 class OTPView extends StatefulWidget {
-  OTPView({Key? key}) : super(key: key);
+  OTPView({Key? key, required this.isNewUser}) : super(key: key);
 
   @override
   _OTPViewState createState() => _OTPViewState();
+  final bool isNewUser;
 }
 
 class _OTPViewState extends State<OTPView> {
@@ -111,7 +112,7 @@ class _OTPViewState extends State<OTPView> {
                         }
                       }
                       if (isAllFilled) {
-                        context.read<AuthCubit>().checkOTP(userOTP: currentOTP);
+                        context.read<AuthCubit>().checkOTP(userOTP: currentOTP, isNewUser: widget.isNewUser);
                       }
                     },
                   ),
@@ -122,7 +123,7 @@ class _OTPViewState extends State<OTPView> {
           const Gap(40),
           CustomButton(
             onPressed: () =>
-                context.read<AuthCubit>().checkOTP(userOTP: currentOTP),
+                context.read<AuthCubit>().checkOTP(userOTP: currentOTP, isNewUser: widget.isNewUser,),
             style: style,
             text: 'Submit',
             padding: const EdgeInsets.symmetric(vertical: 20),

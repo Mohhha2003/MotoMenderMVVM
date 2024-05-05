@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:moto_mender_mvvm/models/product.dart';
+import 'package:moto_mender_mvvm/view_models/cart_view_model/cubit/cart_cubit_cubit.dart';
 
 import '../widgets/product_quantity_row.dart';
 
 class CartProdcutAdapter extends StatelessWidget {
   const CartProdcutAdapter({
     super.key,
+    required this.product,
   });
+
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -24,28 +30,32 @@ class CartProdcutAdapter extends StatelessWidget {
               Row(children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Image.asset('assets/image/product.png'),
+                  child: Image.network(
+                    '${product.imagePath}',
+                    width: 100,
+                    height: 100,
+                  ),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Microfiber Cleaning',
+                      '${product.name}',
                       style: style.bodyLarge,
                     ),
                     Text(
-                      '12 Pack',
+                      '${product.description}',
                       style: style.labelSmall,
                     ),
                     const Gap(20),
                     Text(
-                      '174.00',
+                      '${product.price} EGP',
                       style: style.bodyLarge,
                     )
                   ],
                 ),
               ]),
-              const ProductCartQuantityRow()
+              ProductCartQuantityRow(product: product)
             ],
           ),
         ),
@@ -53,7 +63,9 @@ class CartProdcutAdapter extends StatelessWidget {
           top: 0,
           right: 0,
           child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                context.read<CartCubit>().removeFromCart(product: product);
+              },
               icon: const Icon(
                 Icons.clear,
                 size: 20,

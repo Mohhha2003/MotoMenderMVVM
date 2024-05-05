@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moto_mender_mvvm/view/screens/cart_view.dart';
+import 'package:moto_mender_mvvm/view_models/cart_view_model/cart_view_model.dart';
 
-class ViewCartButton extends StatelessWidget {
-  const ViewCartButton({
+class CartViewButton extends StatelessWidget {
+  const CartViewButton({
     super.key,
   });
 
@@ -11,7 +11,7 @@ class ViewCartButton extends StatelessWidget {
     return IconButton(
         onPressed: () async {
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const CartView(),
+            builder: (context) => const CartViewModel(),
           ));
         },
         icon: const Icon(

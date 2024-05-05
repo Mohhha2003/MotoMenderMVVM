@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:moto_mender_mvvm/view/screens/verfication_view.dart';
+import 'package:moto_mender_mvvm/utils/functions/navigation_with_slide.dart';
 import 'package:moto_mender_mvvm/view_models/forget_password_view_model.dart';
 
 import 'custom_check_box.dart';
 
 class RemeberMeRow extends StatelessWidget {
   const RemeberMeRow({
-    Key? key,
+    super.key,
     required this.style,
-  }) : super(key: key);
+  });
 
   final TextTheme style;
 
@@ -24,9 +24,7 @@ class RemeberMeRow extends StatelessWidget {
         const Spacer(),
         TextButton(
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const ForgetPasswordViewModel(),
-            ));
+            navigationWithSlide(context, const ForgetPasswordViewModel());
           },
           child: const Text(
             'Forget Password?',

@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
-import 'package:moto_mender_mvvm/models/product_request_model/product.dart';
-import 'package:moto_mender_mvvm/view/widgets/categorie_button_list_view.dart';
+import 'package:moto_mender_mvvm/models/product.dart';
+import 'package:moto_mender_mvvm/view/widgets/product_categories_list_view.dart';
 import '../widgets/prodcut_favourties_button.dart';
 import '../widgets/product_back_button.dart';
 import '../widgets/product_bottom_nav_bar.dart';
@@ -69,9 +69,8 @@ class ProductView extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   const Gap(20),
-                  CategorieButtonsListView(
-                    categories: List.filled(2, '${product.category}'),
-                  )
+                  ProductCategoriesListView(
+                      categories: [product.category.toString()]),
                 ],
               ),
             ),

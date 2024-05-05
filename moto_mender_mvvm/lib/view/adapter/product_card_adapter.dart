@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
-import 'package:moto_mender_mvvm/models/product_request_model/product.dart';
-import 'package:moto_mender_mvvm/view/screens/product_view.dart';
+import 'package:moto_mender_mvvm/models/product.dart';
+import 'package:moto_mender_mvvm/view_models/product_view_model.dart';
 
 class ProdcutGridViewItem extends StatelessWidget {
   const ProdcutGridViewItem({
@@ -18,7 +18,7 @@ class ProdcutGridViewItem extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ProductView(
+          builder: (context) => ProductViewModel(
             product: product,
           ),
         ));
@@ -27,7 +27,6 @@ class ProdcutGridViewItem extends StatelessWidget {
         children: [
           Container(
             height: 130,
-            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
             alignment: Alignment.center,
             decoration: BoxDecoration(
                 color: const Color(0xffD9D9D9),

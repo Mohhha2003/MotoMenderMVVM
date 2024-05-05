@@ -14,10 +14,9 @@ class StoreAppBar extends StatelessWidget {
         children: [
           Text(
             'MotoMender',
-            // style: Style.logo,
           ),
           Spacer(),
-          ViewCartButton()
+          CartViewButton()
         ],
       ),
     );

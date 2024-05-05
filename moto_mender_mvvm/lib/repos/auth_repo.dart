@@ -67,4 +67,25 @@ class AuthRepo {
       return Left(e.errorModel.errorMessage);
     }
   }
+
+  Future<Either<String, String>> verfiyEmail({required String email}) async {
+    try {
+      final response =
+          await api.patch(EndPoint.verfiyEmail, data: {ApiKey.email: email});
+
+      return Right(response['message']);
+    } on ServerException catch (e) {
+      return Left(e.errorModel.errorMessage);
+    }
+  }
+
+  Future<Either<String, String>> updateAccount({required String id}) async {
+    try {
+      final response = await api.put(EndPoint.updateAccount,
+          data: {ApiKey.id: id, ApiKey.isVerified: true});
+      return Right(response['message']);
+    } on ServerException catch (e) {
+      return Left(e.errorModel.errorMessage);
+    }
+  }
 }

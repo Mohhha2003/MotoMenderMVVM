@@ -11,21 +11,24 @@ class CategorieButtonsListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.centerLeft,
-      height: 30,
-      child: ListView.builder(
-        itemCount: categories.length,
-        shrinkWrap: true,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: StoreCategorieButton(
-              text: categories[index],
-            ),
-          );
-        },
+    return SliverToBoxAdapter(
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        alignment: Alignment.centerLeft,
+        height: 30,
+        child: ListView.builder(
+          itemCount: categories.length,
+          shrinkWrap: true,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: StoreCategorieButton(
+                text: categories[index],
+              ),
+            );
+          },
+        ),
       ),
     );
   }

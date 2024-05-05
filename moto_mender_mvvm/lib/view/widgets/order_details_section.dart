@@ -13,7 +13,7 @@ class OrderDetailsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     var style = Theme.of(context).textTheme;
     return SizedBox(
-      height: 300,
+      height: MediaQuery.of(context).size.height * .32,
       child: Column(
         children: [
           PromoCodeTextFiled(style: style),

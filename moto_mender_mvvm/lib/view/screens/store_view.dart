@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:moto_mender_mvvm/models/product_request_model/product_request_model.dart';
+import 'package:moto_mender_mvvm/view/widgets/view_cart_button.dart';
 
 import '../widgets/categorie_button_list_view.dart';
 import '../widgets/products_grid_view.dart';
@@ -19,26 +20,30 @@ class StoreView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-      children: [
-        const StoreAppBar(),
-        const Gap(10),
-        const StoreSearchBar(),
-        const Gap(25),
-        const StoreImageSliderItem(),
-        const Gap(15),
-        const ViewAllCategoriesRow(),
-        const Padding(
-          padding: EdgeInsets.only(left: 24),
-          child: CategorieButtonsListView(
+        body: SafeArea(
+      child: CustomScrollView(
+        slivers: [
+          const SliverAppBar(
+            title: Text('MotoMender'),
+            actions: [CartViewButton()],
+          ),
+          const SliverGap(10),
+          const StoreSearchBar(),
+          const SliverGap(30),
+          const StoreImageSliderItem(),
+          const ViewAllCategoriesRow(),
+          const CategorieButtonsListView(
             categories: ['Cleaning', 'Internal', 'External'],
           ),
-        ),
-        const Gap(30),
-        ProductsGridView(
-          products: products!.data!.products!,
-        ),
-      ],
+          const SliverGap(20),
+          SliverPadding(
+            padding: const EdgeInsets.all(20),
+            sliver: ProductsGridView(
+              products: products.data!.products!,
+            ),
+          )
+        ],
+      ),
     ));
   }
 }
