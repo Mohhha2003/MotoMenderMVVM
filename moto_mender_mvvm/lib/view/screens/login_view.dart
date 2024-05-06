@@ -11,7 +11,7 @@ import '../widgets/remember_me_row.dart';
 
 class LoginView extends StatelessWidget {
   LoginView({super.key});
-
+  
   final GlobalKey<FormState> loginState = GlobalKey();
 
   @override
@@ -22,7 +22,7 @@ class LoginView extends StatelessWidget {
         return Scaffold(
           body: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -32,7 +32,7 @@ class LoginView extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'welcome to Medi-deliver',
+                        'welcome to MotoMender',
                         style: style.displayLarge,
                       ),
                       const Gap(10),

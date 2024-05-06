@@ -22,7 +22,7 @@ class _BottomNavBarViewModelState extends State<BottomNavBarViewModel> {
           currentWidget = const StoreViewModel();
           break;
         case 1:
-          currentWidget = const SearchView();
+          currentWidget =  SearchView();
           break;
         case 2:
           currentWidget = const FavortiesViewModel();

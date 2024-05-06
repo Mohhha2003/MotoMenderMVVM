@@ -4,7 +4,9 @@ import 'package:moto_mender_mvvm/view/screens/search_delegate_view.dart';
 class CustomSearchBar extends StatelessWidget {
   const CustomSearchBar({
     super.key,
+    this.suffixIocn,
   });
+  final Widget? suffixIocn;
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +22,11 @@ class CustomSearchBar extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 borderSide:
                     const BorderSide(width: 1, color: Color(0xff34D49E))),
-            suffixIcon: const Icon(
-              Icons.search,
-              color: Color(0xFF757575),
-            ),
+            suffixIcon: suffixIocn ??
+                const Icon(
+                  Icons.search,
+                  color: Color(0xFF757575),
+                ),
             hintText: 'Search',
             hintStyle: Theme.of(context).textTheme.labelSmall,
             fillColor: const Color(0xFFE4E4E4),

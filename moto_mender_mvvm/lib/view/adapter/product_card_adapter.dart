@@ -16,57 +16,60 @@ class ProdcutGridViewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        navigateWithTransition(
-          context,
-          ProductViewModel(
-            product: product,
-          ),
-        );
-      },
-      child: Column(
-        children: [
-          Container(
-            height: 130,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-                color: const Color(0xffD9D9D9),
-                borderRadius: BorderRadius.circular(10)),
-            child: Image.network(
-              width: 140,
-              fit: BoxFit.cover,
-              '${product.imagePath}',
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: InkWell(
+        onTap: () {
+          navigateWithTransition(
+            context,
+            ProductViewModel(
+              product: product,
             ),
-          ),
-          const Gap(10),
-          Expanded(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Text(
-                    '${product.name}',
-                    style: Theme.of(context).textTheme.displaySmall,
-                    overflow: TextOverflow.fade,
+          );
+        },
+        child: Column(
+          children: [
+            Container(
+              height: 130,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  color: const Color(0xffD9D9D9),
+                  borderRadius: BorderRadius.circular(10)),
+              child: Image.network(
+                width: 140,
+                fit: BoxFit.cover,
+                '${product.imagePath}',
+              ),
+            ),
+            const Gap(10),
+            Expanded(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Text(
+                      '${product.name}',
+                      style: Theme.of(context).textTheme.displaySmall,
+                      overflow: TextOverflow.fade,
+                    ),
                   ),
-                ),
-                Image.asset(
-                  'assets/image/star.png',
-                  width: 22,
-                  height: 19,
-                ),
-                Text(
-                  '${product.ratingAverage}',
-                )
-              ],
+                  Image.asset(
+                    'assets/image/star.png',
+                    width: 22,
+                    height: 19,
+                  ),
+                  Text(
+                    '${product.ratingAverage}',
+                  )
+                ],
+              ),
             ),
-          ),
-          Container(
-            alignment: Alignment.centerLeft,
-            child: Text('${product.price}'),
-          )
-        ],
+            Container(
+              alignment: Alignment.centerLeft,
+              child: Text('${product.price}'),
+            )
+          ],
+        ),
       ),
     );
   }

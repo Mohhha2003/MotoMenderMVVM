@@ -28,7 +28,7 @@ class Product {
         category: json['category'] as String?,
         imagePath: json['imagePath']
             .toString()
-            .replaceFirst('localhost', '10.0.2.2') as String?,
+            .replaceFirst('localhost', '192.168.1.17') as String?,
         ratingAverage: json['ratingAverage'] as int?,
         productId: json['productId'] as String?,
       );
