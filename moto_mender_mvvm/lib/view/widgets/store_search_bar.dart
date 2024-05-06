@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moto_mender_mvvm/view/screens/search_view.dart';
 
 class StoreSearchBar extends StatelessWidget {
   const StoreSearchBar({
@@ -13,6 +14,7 @@ class StoreSearchBar extends StatelessWidget {
         height: 36,
         width: 380,
         child: TextField(
+          onTap: () => showSearch(delegate: SearchView(), context: context),
           decoration: InputDecoration(
               suffixIcon: const Icon(
                 Icons.search,

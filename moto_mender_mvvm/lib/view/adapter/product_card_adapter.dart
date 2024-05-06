@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:moto_mender_mvvm/models/product.dart';
+import 'package:moto_mender_mvvm/utils/functions/navigate_with_animation.dart';
 import 'package:moto_mender_mvvm/view_models/product_view_model.dart';
 
 class ProdcutGridViewItem extends StatelessWidget {
@@ -17,11 +18,12 @@ class ProdcutGridViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ProductViewModel(
+        navigateWithTransition(
+          context,
+          ProductViewModel(
             product: product,
           ),
-        ));
+        );
       },
       child: Column(
         children: [

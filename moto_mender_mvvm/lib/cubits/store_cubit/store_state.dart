@@ -8,7 +8,7 @@ final class StoreInitial extends StoreState {}
 final class StoreLoading extends StoreState {}
 
 final class StoreSuccess extends StoreState {
-  final ProductRequestModel products;
+  final List<Product> products;
 
   StoreSuccess(this.products);
 }
