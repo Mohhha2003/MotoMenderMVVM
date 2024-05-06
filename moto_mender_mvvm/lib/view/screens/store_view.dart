@@ -5,7 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:moto_mender_mvvm/models/product.dart';
 import 'package:moto_mender_mvvm/view/widgets/view_cart_button.dart';
 import '../widgets/categorie_button_list_view.dart';
-import '../widgets/products_grid_view.dart';
+import '../widgets/store_products_sliver_grid_view.dart';
 import '../widgets/view_all_categories_row.dart';
 import '../widgets/store_image_slider_item.dart';
 import '../widgets/store_search_bar.dart';
@@ -35,10 +35,10 @@ class StoreView extends StatelessWidget {
           const CategorieButtonsListView(
             categories: ['Cleaning', 'Internal', 'External'],
           ),
-          const SliverGap(20),
+          const SliverGap(5),
           SliverPadding(
             padding: const EdgeInsets.all(20),
-            sliver: ProductsGridView(
+            sliver: StoreSliverGridView(
               products: products,
             ),
           )

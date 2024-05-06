@@ -3,8 +3,8 @@ import 'package:moto_mender_mvvm/models/product.dart';
 
 import '../adapter/product_card_adapter.dart';
 
-class ProductsGridView extends StatelessWidget {
-  const ProductsGridView({
+class StoreSliverGridView extends StatelessWidget {
+  const StoreSliverGridView({
     super.key,
     required this.products,
   });
