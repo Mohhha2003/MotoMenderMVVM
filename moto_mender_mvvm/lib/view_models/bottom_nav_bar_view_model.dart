@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:moto_mender_mvvm/view/screens/profile_view.dart';
+import 'package:moto_mender_mvvm/view/screens/search_view.dart';
 import 'package:moto_mender_mvvm/view_models/favorties_view_model/favorites_view_model.dart';
 import 'package:moto_mender_mvvm/view_models/store_view_model.dart';
 
 class BottomNavBarViewModel extends StatefulWidget {
-  const BottomNavBarViewModel({Key? key}) : super(key: key);
+  const BottomNavBarViewModel({super.key});
 
   @override
   State<BottomNavBarViewModel> createState() => _BottomNavBarViewModelState();
@@ -21,6 +22,7 @@ class _BottomNavBarViewModelState extends State<BottomNavBarViewModel> {
           currentWidget = const StoreViewModel();
           break;
         case 1:
+          currentWidget = const SearchView();
           break;
         case 2:
           currentWidget = const FavortiesViewModel();

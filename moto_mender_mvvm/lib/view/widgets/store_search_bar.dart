@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moto_mender_mvvm/view/screens/search_view.dart';
+import 'custom_search_bar.dart';
 
 class StoreSearchBar extends StatelessWidget {
   const StoreSearchBar({
@@ -8,27 +8,8 @@ class StoreSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 24),
-        height: 36,
-        width: 380,
-        child: TextField(
-          onTap: () => showSearch(delegate: SearchView(), context: context),
-          decoration: InputDecoration(
-              suffixIcon: const Icon(
-                Icons.search,
-                color: Color(0xFF757575),
-              ),
-              hintText: 'Search',
-              hintStyle: Theme.of(context).textTheme.labelSmall,
-              fillColor: const Color(0xFFE4E4E4),
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide:
-                      const BorderSide(width: 1, color: Color(0xFFEAEAEA)))),
-        ),
-      ),
+    return const  SliverToBoxAdapter(
+      child: CustomSearchBar(),
     );
   }
 }
