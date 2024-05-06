@@ -27,7 +27,9 @@ class FavortiesViewModel extends StatelessWidget {
           context.read<FavoritesCubit>().getAllFavorites();
           return const FavoritesView();
         } else if (state is FavoritesEmpty) {
-          return const EmptyWidget();
+          return const EmptyWidget(
+            text: 'Favorites',
+          );
         } else {
           return const FavoritesView();
         }

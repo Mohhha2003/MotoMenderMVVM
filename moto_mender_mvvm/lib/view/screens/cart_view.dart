@@ -16,6 +16,7 @@ class CartView extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Product> products = context.read<CartCubit>().cartProducts;
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       bottomNavigationBar:
           products.isEmpty ? const SizedBox() : const OrderDetailsSection(),
       appBar: AppBar(
@@ -24,7 +25,7 @@ class CartView extends StatelessWidget {
         leading: const ProductBackButton(),
       ),
       body: products.isEmpty
-          ? const EmptyWidget()
+          ? const EmptyWidget(text: 'Cart',)
           : Column(
               children: [
                 Expanded(

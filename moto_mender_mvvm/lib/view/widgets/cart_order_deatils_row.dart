@@ -4,9 +4,11 @@ class CartOrderDetailsRow extends StatelessWidget {
   const CartOrderDetailsRow({
     super.key,
     required this.text,
+    required this.price,
   });
 
   final String text;
+  final String price;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class CartOrderDetailsRow extends StatelessWidget {
             style: style.bodyLarge,
           ),
           const Spacer(),
-          Text('335.00', style: style.bodyLarge)
+          Text(price, style: style.bodyLarge)
         ],
       ),
     );

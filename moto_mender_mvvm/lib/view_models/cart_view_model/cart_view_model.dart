@@ -11,9 +11,9 @@ class CartViewModel extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<CartCubit, CartCubitState>(
       builder: (context, state) {
-        if (state is ProductRemoved) {
+        if (state is ProductQuantityChanged) {
           return const CartView();
-        } else if (state is ProdAdded) {
+        } else if (state is CartEmpty) {
           return const CartView();
         } else {
           return const CartView();

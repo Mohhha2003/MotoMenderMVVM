@@ -4,8 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:moto_mender_mvvm/models/product.dart';
 import 'package:moto_mender_mvvm/view_models/favorties_view_model/cubit/favorites_cubit.dart';
 
-
-
 class FavoritesAdapterCard extends StatelessWidget {
   FavoritesAdapterCard({
     super.key,
@@ -49,23 +47,26 @@ class FavoritesAdapterCard extends StatelessWidget {
                   height: 100,
                 ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '${product.name}',
-                    style: style.bodyLarge,
-                  ),
-                  Text(
-                    '${product.description}',
-                    style: style.labelSmall,
-                  ),
-                  const Gap(20),
-                  Text(
-                    '${product.price} EGP',
-                    style: style.bodyLarge,
-                  )
-                ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${product.name}',
+                      style: style.bodyLarge,
+                    ),
+                    Text(
+                      '${product.description}',
+                      style: style.labelSmall,
+                    ),
+                    const Gap(20),
+                    Text(
+                      '${product.price} EGP',
+                      style: style.bodyLarge,
+                    )
+                  ],
+                ),
               ),
             ]),
           ],

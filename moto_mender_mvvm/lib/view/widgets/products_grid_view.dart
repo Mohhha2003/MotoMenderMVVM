@@ -5,25 +5,23 @@ import '../adapter/product_card_adapter.dart';
 
 class ProductsGridView extends StatelessWidget {
   const ProductsGridView({
-    Key? key,
+    super.key,
     required this.products,
-  }) : super(key: key);
+  });
 
   final List<Product> products;
 
   @override
   Widget build(BuildContext context) {
-    return SliverGrid(
+    return SliverGrid.builder(
+      itemCount: products.length,
+      itemBuilder: (context, index) {
+        return ProdcutGridViewItem(product: products[index]);
+      },
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         mainAxisSpacing: 20,
         crossAxisSpacing: 20,
         crossAxisCount: 2,
-      ),
-      delegate: SliverChildBuilderDelegate(
-        (BuildContext context, int index) {
-          return ProdcutGridViewItem(product: products[index]);
-        },
-        childCount: products.length,
       ),
     );
   }

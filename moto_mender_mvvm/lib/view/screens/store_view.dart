@@ -4,10 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:moto_mender_mvvm/models/product_request_model/product_request_model.dart';
 import 'package:moto_mender_mvvm/view/widgets/view_cart_button.dart';
-
 import '../widgets/categorie_button_list_view.dart';
 import '../widgets/products_grid_view.dart';
-import '../widgets/sotre_app_bar.dart';
 import '../widgets/view_all_categories_row.dart';
 import '../widgets/store_image_slider_item.dart';
 import '../widgets/store_search_bar.dart';

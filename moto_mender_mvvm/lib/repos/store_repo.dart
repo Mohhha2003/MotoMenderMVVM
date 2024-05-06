@@ -11,7 +11,8 @@ class StoreRepo {
 
   Future<Either<String, ProductRequestModel>> getAllProducts() async {
     try {
-      final respone = await api.get(EndPoint.products);
+      final respone = await api
+          .get(EndPoint.products, queryParameters: {"page": 1, "limit": 4});
       final products = ProductRequestModel.fromJson(respone);
       return Right(products);
     } on ServerException catch (e) {

@@ -3,6 +3,7 @@ import 'package:moto_mender_mvvm/cache/cache_helper.dart';
 import 'package:moto_mender_mvvm/core/api/api_consumer.dart';
 import 'package:moto_mender_mvvm/core/api/endpoints.dart';
 import 'package:moto_mender_mvvm/core/errors/exceptions.dart';
+import 'package:moto_mender_mvvm/models/product.dart';
 import 'package:moto_mender_mvvm/models/product_request_model/data.dart';
 
 class FavoritesRepo {
@@ -20,14 +21,14 @@ class FavoritesRepo {
     }
   }
 
-  Future<Either<String, String>> addToFavorites(
+  Future<Either<String, Product>> addToFavorites(
       {required String productId}) async {
     try {
       final response = await api.post(EndPoint.addFavorite, data: {
         ApiKey.userId: CacheHelper.currentUser.id,
         ApiKey.productId: productId
       });
-      return Right(response['message']);
+      return Right(Product.fromJson(response));
     } on ServerException catch (e) {
       return Left(e.errorModel.errorMessage);
     }

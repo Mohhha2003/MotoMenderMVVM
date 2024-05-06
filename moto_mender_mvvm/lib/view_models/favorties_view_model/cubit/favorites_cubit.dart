@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:moto_mender_mvvm/models/product.dart';
 import 'package:moto_mender_mvvm/repos/favorites_repo.dart';
-
 part 'favorites_state.dart';
 
 class FavoritesCubit extends Cubit<FavoritesState> {
@@ -11,6 +10,7 @@ class FavoritesCubit extends Cubit<FavoritesState> {
   final FavoritesRepo favoritesRepo;
 
   List<Product> favorites = [];
+  bool isFav = false;
 
   Future<void> getAllFavorites() async {
     final response = await favoritesRepo.getAllFavorites();
@@ -18,10 +18,9 @@ class FavoritesCubit extends Cubit<FavoritesState> {
         (products) {
       favorites.addAll(products.products ?? []);
       if (favorites.isEmpty) {
-        print('Cart is Empty ......');
         emit(FavoritesEmpty());
       } else {
-        emit(FavoriteAdded());
+        emit(FavoritesPopulated());
       }
     });
   }
@@ -29,8 +28,8 @@ class FavoritesCubit extends Cubit<FavoritesState> {
   Future<void> addToFavorites({required String productId}) async {
     final response = await favoritesRepo.addToFavorites(productId: productId);
     response.fold((errorMessage) => emit(FavoritesError(message: errorMessage)),
-        (success) {
-          
+        (product) {
+      favorites.add(product);
       emit(FavoriteAdded());
     });
   }
@@ -55,5 +54,14 @@ class FavoritesCubit extends Cubit<FavoritesState> {
     } else {
       return false;
     }
+  }
+
+  bool isProcutFavorite({required String productId}) {
+    for (var prodcut in favorites) {
+      if (prodcut.id == productId) {
+        return true;
+      }
+    }
+    return false;
   }
 }

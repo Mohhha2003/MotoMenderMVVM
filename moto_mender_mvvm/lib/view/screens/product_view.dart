@@ -39,7 +39,7 @@ class ProductView extends StatelessWidget {
             flexibleSpace: FlexibleSpaceBar(
               background: Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 88, vertical: 70),
+                    const EdgeInsets.symmetric(horizontal: 40, vertical: 70),
                 child: Image.network(
                   '${product.imagePath}',
                   fit: BoxFit.contain,

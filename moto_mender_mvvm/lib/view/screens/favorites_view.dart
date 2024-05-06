@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:moto_mender_mvvm/models/product.dart';
 import 'package:moto_mender_mvvm/view/adapter/favorite_product_adapter.dart';
 import 'package:moto_mender_mvvm/view_models/favorties_view_model/cubit/favorites_cubit.dart';
@@ -16,6 +17,7 @@ class FavoritesView extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
+            const Gap(20),
             Text('Favorites', style: style.titleLarge),
             Expanded(
                 child: ListView.builder(
