@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:moto_mender_mvvm/core/api/api_consumer.dart';
 import 'package:moto_mender_mvvm/core/errors/exceptions.dart';
-
 import 'api_interceptors.dart';
 import 'endpoints.dart';
 

@@ -11,7 +11,7 @@ import '../widgets/remember_me_row.dart';
 
 class LoginView extends StatelessWidget {
   LoginView({super.key});
-  
+
   final GlobalKey<FormState> loginState = GlobalKey();
 
   @override
@@ -27,7 +27,6 @@ class LoginView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Gap(30),
-                  Image.asset('assets/image/logo.png'),
                   const Gap(20),
                   Row(
                     children: [

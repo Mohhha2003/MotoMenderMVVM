@@ -36,6 +36,12 @@ class ProdcutGridViewItem extends StatelessWidget {
                   color: const Color(0xffD9D9D9),
                   borderRadius: BorderRadius.circular(10)),
               child: Image.network(
+                errorBuilder: (context, error, stackTrace) {
+                  return const Placeholder(
+                    fallbackWidth: 100,
+                    fallbackHeight: 100,
+                  );
+                },
                 width: 140,
                 fit: BoxFit.cover,
                 '${product.imagePath}',

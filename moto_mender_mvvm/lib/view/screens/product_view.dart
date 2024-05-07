@@ -41,6 +41,12 @@ class ProductView extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 40, vertical: 70),
                 child: Image.network(
+                  errorBuilder: (context, error, stackTrace) {
+                    return const Placeholder(
+                      fallbackWidth: 100,
+                      fallbackHeight: 100,
+                    );
+                  },
                   '${product.imagePath}',
                   fit: BoxFit.contain,
                 ),

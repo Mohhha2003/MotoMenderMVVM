@@ -4,7 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:moto_mender_mvvm/cubits/store_cubit/store_cubit.dart';
 import 'package:moto_mender_mvvm/view/widgets/custom_search_bar.dart';
 import 'package:moto_mender_mvvm/view/widgets/product_grid_view.dart';
-
+import 'package:moto_mender_mvvm/view/widgets/view_cart_button.dart';
 import 'sort_and_filter.dart';
 
 class SearchView extends StatelessWidget {
@@ -18,6 +18,7 @@ class SearchView extends StatelessWidget {
         child: Scaffold(
       key: scaffoldstate,
       appBar: AppBar(
+        actions: const [CartViewButton()],
         centerTitle: true,
         title: Text(
           'Search',
