@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moto_mender_mvvm/utils/functions/dialog_utils.dart';
 import 'package:moto_mender_mvvm/utils/functions/show_snackbar.dart';
 import 'package:moto_mender_mvvm/view/screens/cart_view.dart';
 import 'package:moto_mender_mvvm/view_models/cart_view_model/cubit/cart_cubit_cubit.dart';
@@ -22,6 +23,15 @@ class CartViewModel extends StatelessWidget {
       listener: (BuildContext context, CartCubitState state) {
         if (state is ProductRemoved) {
           showSnackBar(text: 'Product Removed', context: context);
+        } else if (state is OrderFailed) {
+          showSnackBar(text: state.message, context: context);
+          Navigator.of(context).pop();
+        } else if (state is OrderSuccess) {
+          showSnackBar(text: state.message, context: context);
+          Navigator.of(context).pop();
+          Navigator.of(context).pop();
+        } else if (state is OrderLoading) {
+          showLoading(context);
         }
       },
     );

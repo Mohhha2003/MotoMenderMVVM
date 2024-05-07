@@ -9,6 +9,6 @@ void showSnackBar(
     behavior: SnackBarBehavior.floating,
     content: Text(text),
     backgroundColor: backgroundColor ?? Colors.red,
-    duration: const Duration(milliseconds: 500),
+    duration: const Duration(milliseconds: 800),
   ));
 }

@@ -1,11 +1,15 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
+import 'package:moto_mender_mvvm/core/api/endpoints.dart';
 import 'package:moto_mender_mvvm/models/product.dart';
+import 'package:moto_mender_mvvm/repos/orders_repo.dart';
 part 'cart_cubit_state.dart';
 
 class CartCubit extends Cubit<CartCubitState> {
-  CartCubit() : super(CartCubitInitial());
+  CartCubit(this.ordersRepo) : super(CartCubitInitial());
+
+  final OrdersRepo ordersRepo;
 
   TextEditingController promoCode = TextEditingController();
 
@@ -88,5 +92,25 @@ class CartCubit extends Cubit<CartCubitState> {
       return true;
     }
     return false;
+  }
+
+  Future<void> placeNewOrder() async {
+    List<Map<String, dynamic>> products = [];
+    for (var product in cartProducts) {
+      products.add({
+        ApiKey.productId: product.productId,
+        ApiKey.quantity: product.orderQuantity
+      });
+    }
+    emit(OrderLoading());
+    final respone = await ordersRepo.placeNewOrder(products: products);
+    respone.fold((errorMessage) => emit(OrderFailed(message: errorMessage)),
+        (succes) {
+      cartProducts.clear();
+      subtotal = 0;
+      discount = 0;
+      deleviryFee = 0;
+      emit(OrderSuccess(message: succes));
+    });
   }
 }

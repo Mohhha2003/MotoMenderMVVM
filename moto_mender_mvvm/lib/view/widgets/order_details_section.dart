@@ -20,7 +20,7 @@ class OrderDetailsSection extends StatelessWidget {
             height: MediaQuery.of(context).size.height * .32,
             child: Column(
               children: [
-                PromoCodeTextFiled(style: style), 
+                PromoCodeTextFiled(style: style),
                 CartOrderDetailsRow(
                   price: context.read<CartCubit>().subtotal.toString(),
                   text: 'Subtotal',
@@ -34,6 +34,9 @@ class OrderDetailsSection extends StatelessWidget {
                   text: 'Discount',
                 ),
                 CustomButton(
+                  onPressed: () {
+                    context.read<CartCubit>().placeNewOrder();
+                  },
                   style: style,
                   text: 'Check Out',
                 )

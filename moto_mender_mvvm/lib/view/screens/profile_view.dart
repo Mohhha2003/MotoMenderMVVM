@@ -53,9 +53,9 @@ class ProfileView extends StatelessWidget {
             ),
             const Gap(10),
             ProfileListTiles(
-              icon: Icons.favorite_border,
+              icon: Icons.shopping_cart_checkout,
               style: style,
-              text: 'Favourites',
+              text: 'Orders',
             ),
             ProfileListTiles(
               icon: Icons.location_on_outlined,

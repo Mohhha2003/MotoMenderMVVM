@@ -14,6 +14,11 @@ class EndPoint {
   static String deleteFavorite = '/favourites/removeFromFavorites';
   //  PRODUCT ENDPONITS
   static String products = '/products';
+  //   ORDER ENDPOINTS
+  static String orders = '/orders';
+  static String getAllOrders = '/orders/';
+  static String placeNewOrder = '/orders/';
+  static String getUserOrders = '/orders/:id';
 }
 
 class ApiKey {
@@ -31,4 +36,7 @@ class ApiKey {
   static String otp = 'otp';
   static String userId = 'userId';
   static String productId = 'productId';
+  static String quantity = 'quantity';
+
+  static String orderProducts = 'products';
 }
