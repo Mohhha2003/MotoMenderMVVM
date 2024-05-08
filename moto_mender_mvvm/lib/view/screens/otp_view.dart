@@ -112,7 +112,8 @@ class _OTPViewState extends State<OTPView> {
                         }
                       }
                       if (isAllFilled) {
-                        context.read<AuthCubit>().checkOTP(userOTP: currentOTP, isNewUser: widget.isNewUser);
+                        context.read<AuthCubit>().checkOTP(
+                            userOTP: currentOTP, isNewUser: widget.isNewUser);
                       }
                     },
                   ),
@@ -122,8 +123,10 @@ class _OTPViewState extends State<OTPView> {
           ),
           const Gap(40),
           CustomButton(
-            onPressed: () =>
-                context.read<AuthCubit>().checkOTP(userOTP: currentOTP, isNewUser: widget.isNewUser,),
+            onPressed: () => context.read<AuthCubit>().checkOTP(
+                  userOTP: currentOTP,
+                  isNewUser: widget.isNewUser,
+                ),
             style: style,
             text: 'Submit',
             padding: const EdgeInsets.symmetric(vertical: 20),

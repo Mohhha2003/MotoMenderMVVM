@@ -4,27 +4,30 @@ part of 'cart_cubit_cubit.dart';
 sealed class CartCubitState {}
 
 final class CartCubitInitial extends CartCubitState {}
+final class CartCubitStartup extends CartCubitState {}
 
-final class ProdAdded extends CartCubitState {}
 
-final class ProductRemoved extends CartCubitState {}
-
-final class ProductQuantityChanged extends CartCubitState {}
+//     CART BASE STATE
+final class CartBaseState extends CartCubitState {}
 
 final class CartEmpty extends CartCubitState {}
 
-final class ValidPromoCode extends CartCubitState {}
+final class Loading extends CartCubitState {}
+final class EndLoading extends CartCubitState {}
 
-final class OrderSuccess extends CartCubitState {
-    final String message;
 
-  OrderSuccess({required this.message});
-}
-
-final class OrderFailed extends CartCubitState {
+final class CartFailed extends CartCubitState {
   final String message;
 
-  OrderFailed({required this.message});
+  CartFailed({required this.message});
 }
 
-final class OrderLoading extends CartCubitState {}
+//    ADDITION AND REMOVAL OF PRODUCTS
+
+final class ProductAdded extends CartCubitState {}
+
+final class ProductRemoved extends CartCubitState {}
+
+//  QUANTITY STATE
+
+final class ProductQuantityChanged extends CartCubitState {}

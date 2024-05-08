@@ -19,6 +19,12 @@ class EndPoint {
   static String getAllOrders = '/orders/';
   static String placeNewOrder = '/orders/';
   static String getUserOrders = '/orders/:id';
+  // CART ENDPOINTS
+  static String addToCart = '/cart';
+  static String getCartProdcuts = '/cart';
+  static String removeCartProduct = '/cart';
+  static String incrementQuantity = '/cart/products/increment';
+  static String decrementQuantity = '/cart/products/decrement';
 }
 
 class ApiKey {

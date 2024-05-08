@@ -16,6 +16,6 @@ class StoreRepo {
       return Right(products);
     } on ServerException catch (e) {
       return Left(e.errorModel.errorMessage);
-    } 
+    }
   }
 }

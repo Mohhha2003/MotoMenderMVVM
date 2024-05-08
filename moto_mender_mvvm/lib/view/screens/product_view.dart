@@ -28,7 +28,7 @@ class ProductView extends StatelessWidget {
             automaticallyImplyLeading: false,
             actions: [
               const Gap(22),
-              const ProductBackButton(),
+              const CustomBackButton(),
               const Spacer(),
               ProductFavouritesButton(
                 productId: product.id!,

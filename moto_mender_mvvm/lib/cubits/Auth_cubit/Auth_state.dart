@@ -65,5 +65,4 @@ final class OTPWrong extends AuthState {
   final String message;
 
   OTPWrong({required this.message});
-
 }

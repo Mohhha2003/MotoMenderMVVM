@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:moto_mender_mvvm/models/cart_model/cart_product_list_model.dart';
 import 'package:moto_mender_mvvm/models/product.dart';
 import 'package:moto_mender_mvvm/view_models/cart_view_model/cubit/cart_cubit_cubit.dart';
-
 import '../widgets/product_quantity_row.dart';
 
 class CartProdcutAdapter extends StatelessWidget {
   const CartProdcutAdapter({
     super.key,
-    required this.product,
+    required this.cartProduct,
   });
 
-  final Product product;
+  final CartProductsListModel cartProduct;
 
   @override
   Widget build(BuildContext context) {
+      final Product product = cartProduct.product!;
     var style = Theme.of(context).textTheme;
     return Stack(
       children: [
@@ -55,7 +56,7 @@ class CartProdcutAdapter extends StatelessWidget {
                   ],
                 ),
               ]),
-              ProductCartQuantityRow(product: product)
+              ProductCartQuantityRow(product: product, quantity: cartProduct.quantity.toString(),)
             ],
           ),
         ),
@@ -64,7 +65,9 @@ class CartProdcutAdapter extends StatelessWidget {
           right: 0,
           child: IconButton(
               onPressed: () {
-                context.read<CartCubit>().removeFromCart(product: product);
+                context
+                    .read<CartCubit>()
+                    .removeCartProduct(productId: product.productId!);
               },
               icon: const Icon(
                 Icons.clear,

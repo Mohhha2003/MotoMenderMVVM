@@ -6,9 +6,9 @@ import 'package:moto_mender_mvvm/view/widgets/custom_button.dart';
 import 'package:moto_mender_mvvm/view/widgets/custom_text_field.dart';
 
 class SignUpView extends StatelessWidget {
-   SignUpView({super.key});
+  SignUpView({super.key});
 
- final GlobalKey<FormState> signUpState = GlobalKey();
+  final GlobalKey<FormState> signUpState = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class SignUpView extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Form(
-            key:signUpState,
+            key: signUpState,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -133,9 +133,7 @@ class SignUpView extends StatelessWidget {
                   padding: const EdgeInsets.all(10),
                   child: CustomButton(
                     onPressed: () {
-                      if (signUpState
-                          .currentState!
-                          .validate()) {
+                      if (signUpState.currentState!.validate()) {
                         context.read<AuthCubit>().signUp();
                       }
                     },

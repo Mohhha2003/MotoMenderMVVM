@@ -8,7 +8,7 @@ class StoreSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const  SliverToBoxAdapter(
+    return const SliverToBoxAdapter(
       child: CustomSearchBar(),
     );
   }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'store_categorie_button.dart';
 
-
 class ProductCategoriesListView extends StatelessWidget {
   const ProductCategoriesListView({
     super.key,

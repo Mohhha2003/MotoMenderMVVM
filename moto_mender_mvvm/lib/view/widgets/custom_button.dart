@@ -6,7 +6,8 @@ class CustomButton extends StatelessWidget {
       required this.style,
       this.onPressed,
       required this.text,
-      this.padding, this.color});
+      this.padding,
+      this.color});
 
   final void Function()? onPressed;
   final String text;
@@ -21,7 +22,7 @@ class CustomButton extends StatelessWidget {
       shape: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14), borderSide: BorderSide.none),
       minWidth: 350,
-      color:color?? const Color(0xff34D49E),
+      color: color ?? const Color(0xff34D49E),
       onPressed: () => onPressed!(),
       child: Text(
         text,

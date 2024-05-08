@@ -15,17 +15,12 @@ class PromoCodeTextFiled extends StatelessWidget {
       height: 90,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       child: TextField(
-        onChanged: (value) {
-          context.read<CartCubit>().isValidPromoCode();
-        },
+        onChanged: (value) {},
         controller: context.read<CartCubit>().promoCode,
         decoration: InputDecoration(
-            suffixText: context.read<CartCubit>().isValidPromoCode()
-                ? 'promocode applied'
-                : '',
-            suffixIcon: context.read<CartCubit>().isValidPromoCode()
-                ? const Icon(Icons.done_rounded, color: Color(0xff34D49E))
-                : null,
+            suffixText: 'promocode applied',
+            suffixIcon:
+                const Icon(Icons.done_rounded, color: Color(0xff34D49E)),
             suffixStyle: style.labelMedium,
             focusedBorder: OutlineInputBorder(
                 borderSide:

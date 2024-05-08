@@ -35,7 +35,7 @@ class OrderDetailsSection extends StatelessWidget {
                 ),
                 CustomButton(
                   onPressed: () {
-                    context.read<CartCubit>().placeNewOrder();
+                    // context.read<CartCubit>().placeNewOrder();
                   },
                   style: style,
                   text: 'Check Out',

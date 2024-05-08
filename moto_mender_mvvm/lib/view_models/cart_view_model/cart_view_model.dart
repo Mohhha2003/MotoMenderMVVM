@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moto_mender_mvvm/utils/functions/dialog_utils.dart';
 import 'package:moto_mender_mvvm/utils/functions/show_snackbar.dart';
 import 'package:moto_mender_mvvm/view/screens/cart_view.dart';
+import 'package:moto_mender_mvvm/view/widgets/empty_widgets.dart';
 import 'package:moto_mender_mvvm/view_models/cart_view_model/cubit/cart_cubit_cubit.dart';
 
 class CartViewModel extends StatelessWidget {
@@ -12,10 +13,12 @@ class CartViewModel extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<CartCubit, CartCubitState>(
       builder: (context, state) {
-        if (state is ProductQuantityChanged) {
+        if (state is CartBaseState || state is ProductQuantityChanged) {
           return const CartView();
         } else if (state is CartEmpty) {
-          return const CartView();
+          return const EmptyWidget(text: 'Cart');
+        } else if (state is CartFailed) {
+          return const EmptyWidget(text: 'Failed Failed');
         } else {
           return const CartView();
         }
@@ -23,15 +26,13 @@ class CartViewModel extends StatelessWidget {
       listener: (BuildContext context, CartCubitState state) {
         if (state is ProductRemoved) {
           showSnackBar(text: 'Product Removed', context: context);
-        } else if (state is OrderFailed) {
-          showSnackBar(text: state.message, context: context);
-          Navigator.of(context).pop();
-        } else if (state is OrderSuccess) {
-          showSnackBar(text: state.message, context: context);
-          Navigator.of(context).pop();
-          Navigator.of(context).pop();
-        } else if (state is OrderLoading) {
+        } else if (state is Loading) {
           showLoading(context);
+        } else if (state is EndLoading) {
+          Navigator.of(context).pop();
+        } else if (state is CartFailed) {
+          Navigator.of(context).pop();
+          showSnackBar(text: state.message, context: context);
         }
       },
     );

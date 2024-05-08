@@ -32,7 +32,9 @@ class ProductBottomNavBar extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                   borderSide: BorderSide.none),
               onPressed: () {
-                context.read<CartCubit>().addToCart(prodcut: product);
+                context
+                    .read<CartCubit>()
+                    .addToCart(productId: product.productId!);
               },
               child: Text(
                 'Add To Cart',

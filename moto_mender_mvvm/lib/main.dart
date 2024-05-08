@@ -7,6 +7,7 @@ import 'package:moto_mender_mvvm/core/api/dio_consumer.dart';
 import 'package:moto_mender_mvvm/cubits/Auth_cubit/Auth_cubit.dart';
 import 'package:moto_mender_mvvm/cubits/store_cubit/store_cubit.dart';
 import 'package:moto_mender_mvvm/repos/auth_repo.dart';
+import 'package:moto_mender_mvvm/repos/cart_repo.dart';
 import 'package:moto_mender_mvvm/repos/favorites_repo.dart';
 import 'package:moto_mender_mvvm/repos/orders_repo.dart';
 import 'package:moto_mender_mvvm/repos/store_repo.dart';
@@ -36,8 +37,9 @@ class MyApp extends StatelessWidget {
             create: (context) =>
                 AuthCubit(AuthRepo(api: DioConsumer(dio: Dio())))),
         BlocProvider(
-            create: (context) =>
-                CartCubit(OrdersRepo(api: DioConsumer(dio: Dio())))),
+            create: (context) => CartCubit(
+                OrdersRepo(api: DioConsumer(dio: Dio())),
+                CartRepo(api: DioConsumer(dio: Dio())))),
         BlocProvider(
           create: (context) =>
               FavoritesCubit(FavoritesRepo(api: DioConsumer(dio: Dio()))),
