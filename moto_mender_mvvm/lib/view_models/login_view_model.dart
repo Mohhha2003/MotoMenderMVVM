@@ -5,6 +5,7 @@ import 'package:moto_mender_mvvm/utils/functions/dialog_utils.dart';
 import 'package:moto_mender_mvvm/utils/functions/floating_bottom_sheet.dart';
 import 'package:moto_mender_mvvm/view_models/bottom_nav_bar_view_model.dart';
 import 'package:moto_mender_mvvm/view/screens/login_view.dart';
+import 'package:moto_mender_mvvm/view_models/favorties_view_model/cubit/favorites_cubit.dart';
 
 class LoginViewModel extends StatelessWidget {
   const LoginViewModel({super.key});
@@ -17,6 +18,7 @@ class LoginViewModel extends StatelessWidget {
           Navigator.of(context).pop();
           showFloatingBottomSheet(text: state.message, context: context);
         } else if (state is LoginSuccess) {
+          context.read<FavoritesCubit>().getAllFavorites();
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(
                   builder: (context) => const BottomNavBarViewModel()),

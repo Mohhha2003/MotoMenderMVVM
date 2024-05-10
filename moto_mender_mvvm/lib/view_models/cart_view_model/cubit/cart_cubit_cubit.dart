@@ -9,7 +9,7 @@ part 'cart_cubit_state.dart';
 
 class CartCubit extends Cubit<CartCubitState> {
   CartCubit(this.ordersRepo, this.cartRepo) : super(CartCubitInitial()) {
-    getCartProducts();
+    // getCartProducts();
   }
 
   final OrdersRepo ordersRepo;
@@ -80,9 +80,11 @@ class CartCubit extends Cubit<CartCubitState> {
   }
 
   Future<void> getCartProducts() async {
+    emit(Loading());
     final response = await cartRepo.getUserCartProducts();
     response.fold((errorMessage) => emit(CartFailed(message: errorMessage)),
         (apiCartProducts) {
+      emit(EndLoading());
       cartProducts = apiCartProducts;
       if (cartProducts.products!.isEmpty) {
         return emit(CartEmpty());

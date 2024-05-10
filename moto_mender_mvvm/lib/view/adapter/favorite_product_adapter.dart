@@ -1,8 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:moto_mender_mvvm/models/product.dart';
 import 'package:moto_mender_mvvm/utils/functions/navigate_with_animation.dart';
+import 'package:moto_mender_mvvm/view/widgets/custom_image_network.dart';
 import 'package:moto_mender_mvvm/view_models/favorties_view_model/cubit/favorites_cubit.dart';
 import 'package:moto_mender_mvvm/view_models/product_view_model.dart';
 
@@ -41,42 +44,36 @@ class FavoritesAdapterCard extends StatelessWidget {
           decoration: const BoxDecoration(
               border: Border(
                   bottom: BorderSide(color: Color(0xffE7E4E4), width: 1))),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Row(children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Image.network(
-                    '${product.imagePath}',
-                    width: 100,
-                    height: 100,
+          child: Row(children: [
+            Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: CustomImageNetwork(
+                  imgPath: product.imagePath!,
+                  height: 100,
+                  width: 120,
+                  fit: BoxFit.contain,
+                )),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '${product.name}',
+                    style: style.bodyLarge,
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '${product.name}',
-                        style: style.bodyLarge,
-                      ),
-                      Text(
-                        '${product.description}',
-                        style: style.labelSmall,
-                      ),
-                      const Gap(20),
-                      Text(
-                        '${product.price} EGP',
-                        style: style.bodyLarge,
-                      )
-                    ],
+                  Text(
+                    '${product.description}',
+                    style: style.labelSmall,
                   ),
-                ),
-              ]),
-            ],
-          ),
+                  const Gap(20),
+                  Text(
+                    '${product.price} EGP',
+                    style: style.bodyLarge,
+                  ),
+                ],
+              ),
+            ),
+          ]),
         ),
       ),
     );

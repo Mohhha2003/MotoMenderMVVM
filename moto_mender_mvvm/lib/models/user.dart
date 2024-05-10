@@ -12,6 +12,7 @@ class User {
   DateTime? resetPasswordExpires;
   String? resetPasswordOtp;
   String? emailVerify;
+  List<String>? favorites;
 
   User(
       {this.id,
@@ -26,6 +27,7 @@ class User {
       this.v,
       this.resetPasswordExpires,
       this.resetPasswordOtp,
+      this.favorites,
       this.emailVerify});
 
   factory User.fromJson(Map<String, dynamic> json) => User(
@@ -38,6 +40,7 @@ class User {
       isBlocked: json['isBlocked'] as bool?,
       profileImage: json['profileImage'] as String?,
       password: json['password'] as String?,
+      favorites: json['favorites'].cast<String>(),
       v: json['__v'] as int?,
       resetPasswordExpires: json['resetPasswordExpires'] == null
           ? null

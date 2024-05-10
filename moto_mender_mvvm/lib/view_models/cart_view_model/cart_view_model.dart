@@ -11,6 +11,11 @@ class CartViewModel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //     TO TRIGGER THIS METHOD EVERY TIME THIS PAGE OPENS
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      BlocProvider.of<CartCubit>(context).getCartProducts();
+    });
+
     return BlocConsumer<CartCubit, CartCubitState>(
       builder: (context, state) {
         if (state is CartBaseState || state is ProductQuantityChanged) {

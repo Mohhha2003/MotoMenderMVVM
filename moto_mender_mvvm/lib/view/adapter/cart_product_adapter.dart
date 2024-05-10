@@ -16,7 +16,7 @@ class CartProdcutAdapter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      final Product product = cartProduct.product!;
+    final Product product = cartProduct.product!;
     var style = Theme.of(context).textTheme;
     return Stack(
       children: [
@@ -56,7 +56,10 @@ class CartProdcutAdapter extends StatelessWidget {
                   ],
                 ),
               ]),
-              ProductCartQuantityRow(product: product, quantity: cartProduct.quantity.toString(),)
+              ProductCartQuantityRow(
+                product: product,
+                quantity: cartProduct.quantity.toString(),
+              )
             ],
           ),
         ),

@@ -11,9 +11,12 @@ import 'package:moto_mender_mvvm/repos/cart_repo.dart';
 import 'package:moto_mender_mvvm/repos/favorites_repo.dart';
 import 'package:moto_mender_mvvm/repos/orders_repo.dart';
 import 'package:moto_mender_mvvm/repos/store_repo.dart';
+import 'package:moto_mender_mvvm/repos/support_service_repo.dart';
 import 'package:moto_mender_mvvm/view/screens/introduction_view.dart';
 import 'package:moto_mender_mvvm/view_models/cart_view_model/cubit/cart_cubit_cubit.dart';
 import 'package:moto_mender_mvvm/view_models/favorties_view_model/cubit/favorites_cubit.dart';
+import 'package:moto_mender_mvvm/view_models/support_view_model/cubit/chat_cubit.dart';
+import 'package:moto_mender_mvvm/view_models/support_view_model/support_view_model.dart';
 import 'view_models/bottom_nav_bar_view_model.dart';
 
 void main() async {
@@ -43,6 +46,11 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) =>
               FavoritesCubit(FavoritesRepo(api: DioConsumer(dio: Dio()))),
+        ),
+        BlocProvider(
+          create: (context) =>
+              ChatCubit(SupportServiceRepo(api: DioConsumer(dio: Dio()))),
+          child: const SupportViewModel(),
         )
       ],
       child: MaterialApp(

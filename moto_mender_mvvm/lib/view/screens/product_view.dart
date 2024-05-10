@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:moto_mender_mvvm/models/product.dart';
+import 'package:moto_mender_mvvm/view/widgets/custom_image_network.dart';
 import 'package:moto_mender_mvvm/view/widgets/product_categories_list_view.dart';
 import '../widgets/prodcut_favourties_button.dart';
 import '../widgets/product_back_button.dart';
@@ -38,19 +39,12 @@ class ProductView extends StatelessWidget {
             expandedHeight: 390,
             flexibleSpace: FlexibleSpaceBar(
               background: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 40, vertical: 70),
-                child: Image.network(
-                  errorBuilder: (context, error, stackTrace) {
-                    return const Placeholder(
-                      fallbackWidth: 100,
-                      fallbackHeight: 100,
-                    );
-                  },
-                  '${product.imagePath}',
-                  fit: BoxFit.contain,
-                ),
-              ),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 40, vertical: 70),
+                  child: CustomImageNetwork(
+                    imgPath: product.imagePath!,
+                    fit: BoxFit.fitWidth,
+                  )),
             ),
           ),
           SliverFillRemaining(

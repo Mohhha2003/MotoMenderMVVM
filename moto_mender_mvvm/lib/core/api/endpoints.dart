@@ -25,9 +25,14 @@ class EndPoint {
   static String removeCartProduct = '/cart';
   static String incrementQuantity = '/cart/products/increment';
   static String decrementQuantity = '/cart/products/decrement';
+  //  SUPPORT ENPOINTS
+  static String creatChatRoom = '/Support/create';
+  static String sendMessage = '/Support/send';
+  static String getChatRoomMessages = '/Support/get';
 }
 
 class ApiKey {
+  // GLOBAL KEYS
   static String status = "status";
   static String errorMessage = "message";
   static String email = "email";
@@ -35,7 +40,8 @@ class ApiKey {
   static String password = "password";
   static String address = 'address';
   static String phone = 'phone';
-
+  static String adminId = 'adminId';
+  // AUTH KEYS
   static String id = "id";
   static String isVerified = "isVerified";
   static String newPassword = 'newPassword';
@@ -43,6 +49,11 @@ class ApiKey {
   static String userId = 'userId';
   static String productId = 'productId';
   static String quantity = 'quantity';
-
+  // ORDERS KEYS
   static String orderProducts = 'products';
+  //   SUPPORT KEYS
+  static String senderId = 'senderId';
+  static String reciverId = 'receiverId';
+  static String content = 'content';
+  static String chatRoomId = 'chatRoomId';
 }

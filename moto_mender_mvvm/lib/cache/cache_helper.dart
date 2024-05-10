@@ -15,7 +15,8 @@ class CacheHelper {
       final respone = await AuthRepo(api: DioConsumer(dio: Dio())).login(
           email: getDataString(key: 'email')!,
           password: getDataString(key: 'password')!);
-      respone.fold((l) => null, (success) => currentUser = success.user!);
+      respone.fold((error) => currentUser = User(),
+          (success) => currentUser = success.user!);
     }
     return rememberMe;
   }

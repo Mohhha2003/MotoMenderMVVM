@@ -9,6 +9,7 @@ class FavoritesCubit extends Cubit<FavoritesState> {
 
   final FavoritesRepo favoritesRepo;
 
+  List<String> productsIds = [];
   List<Product> favorites = [];
   bool isFav = false;
 
@@ -29,6 +30,7 @@ class FavoritesCubit extends Cubit<FavoritesState> {
     final response = await favoritesRepo.addToFavorites(productId: productId);
     response.fold((errorMessage) => emit(FavoritesError(message: errorMessage)),
         (product) {
+      productsIds.add(product.productId!);
       favorites.add(product);
       emit(FavoriteAdded());
     });
@@ -40,6 +42,7 @@ class FavoritesCubit extends Cubit<FavoritesState> {
         (success) {
       int index = favorites.indexWhere((product) => product.id == productId);
       favorites.removeAt(index);
+      productsIds.removeAt(index);
       if (isFavortiesEmpty()) {
         emit(FavoritesEmpty());
       } else {
@@ -57,8 +60,8 @@ class FavoritesCubit extends Cubit<FavoritesState> {
   }
 
   bool isProcutFavorite({required String productId}) {
-    for (var prodcut in favorites) {
-      if (prodcut.id == productId) {
+    for (var id in productsIds) {
+      if (id == productId) {
         return true;
       }
     }

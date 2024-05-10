@@ -6,7 +6,7 @@ import 'package:moto_mender_mvvm/core/errors/exceptions.dart';
 import 'package:moto_mender_mvvm/models/cart_model/cart_model.dart';
 import 'package:moto_mender_mvvm/models/product.dart';
 
-class CartRepo {  
+class CartRepo {
   final ApiConsumer api;
 
   CartRepo({required this.api});
@@ -57,6 +57,7 @@ class CartRepo {
       return Left(e.errorModel.errorMessage);
     }
   }
+
   Future<Either<String, String>> decrementProductQuantity(
       {required String productId}) async {
     try {

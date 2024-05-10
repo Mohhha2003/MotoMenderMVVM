@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:moto_mender_mvvm/cache/cache_helper.dart';
 import 'package:moto_mender_mvvm/models/user.dart';
+import 'package:moto_mender_mvvm/utils/functions/navigation_with_slide.dart';
 import 'package:moto_mender_mvvm/view_models/login_view_model.dart';
+import 'package:moto_mender_mvvm/view_models/support_view_model/cubit/chat_cubit.dart';
+import 'package:moto_mender_mvvm/view_models/support_view_model/support_view_model.dart';
 import '../widgets/profile_list_tile.dart';
 
 class ProfileView extends StatelessWidget {
@@ -68,6 +72,13 @@ class ProfileView extends StatelessWidget {
               text: 'Wallet',
             ),
             ProfileListTiles(
+              onTap: () {
+                print('Triggred the method');
+                context
+                    .read<ChatCubit>()
+                    .createChatRoom(adminId: '6628da3921a3a72fffb3153f');
+                navigationWithSlide(context, const SupportViewModel());
+              },
               icon: Icons.mail_outline_rounded,
               style: style,
               text: 'Contact With Us',

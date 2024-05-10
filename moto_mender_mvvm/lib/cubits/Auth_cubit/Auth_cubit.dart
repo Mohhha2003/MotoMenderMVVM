@@ -44,6 +44,7 @@ class AuthCubit extends Cubit<AuthState> {
     respone.fold((errorMessage) => emit(LoginFailed(message: errorMessage)),
         (success) {
       CacheHelper.currentUser = success.user!;
+
       if (rememberMe) {
         CacheHelper().saveData(key: 'email', value: loginEmail.text);
         CacheHelper().saveData(key: 'password', value: loginPassword.text);

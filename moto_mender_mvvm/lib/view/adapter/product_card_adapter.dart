@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:moto_mender_mvvm/models/product.dart';
 import 'package:moto_mender_mvvm/utils/functions/navigate_with_animation.dart';
+import 'package:moto_mender_mvvm/view/widgets/custom_image_network.dart';
 import 'package:moto_mender_mvvm/view_models/product_view_model.dart';
 
 class ProdcutGridViewItem extends StatelessWidget {
@@ -35,16 +36,9 @@ class ProdcutGridViewItem extends StatelessWidget {
               decoration: BoxDecoration(
                   color: const Color(0xffD9D9D9),
                   borderRadius: BorderRadius.circular(10)),
-              child: Image.network(
-                errorBuilder: (context, error, stackTrace) {
-                  return const Placeholder(
-                    fallbackWidth: 100,
-                    fallbackHeight: 100,
-                  );
-                },
+              child: CustomImageNetwork(
+                imgPath: product.imagePath!,
                 width: 140,
-                fit: BoxFit.cover,
-                '${product.imagePath}',
               ),
             ),
             const Gap(10),
