@@ -52,7 +52,7 @@ class IntroductionView extends StatelessWidget {
                       CacheHelper.currentUser = User(
                         name: 'Anynmous',
                         phone: '',
-                        id: null,
+                        id: '66333e2a4a39a9f9e22b85e8',
                       );
                       navigateWithTransition(
                           context, const BottomNavBarViewModel(),

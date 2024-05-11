@@ -11,7 +11,10 @@ class StoreViewModel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<StoreCubit>().fetchProducts();
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   context.read<StoreCubit>().fetchProducts();
+    // });
+    // context.read<StoreCubit>().fetchProducts();
     return BlocBuilder<StoreCubit, StoreState>(
       builder: (context, state) {
         if (state is StoreFailed) {

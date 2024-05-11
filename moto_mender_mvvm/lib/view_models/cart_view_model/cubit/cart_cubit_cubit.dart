@@ -4,15 +4,13 @@ import 'package:meta/meta.dart';
 import 'package:moto_mender_mvvm/cache/cache_helper.dart';
 import 'package:moto_mender_mvvm/models/cart_model/cart_model.dart';
 import 'package:moto_mender_mvvm/repos/cart_repo.dart';
-import 'package:moto_mender_mvvm/repos/orders_repo.dart';
 part 'cart_cubit_state.dart';
 
 class CartCubit extends Cubit<CartCubitState> {
-  CartCubit(this.ordersRepo, this.cartRepo) : super(CartCubitInitial()) {
+  CartCubit(this.cartRepo) : super(CartCubitInitial()) {
     // getCartProducts();
   }
 
-  final OrdersRepo ordersRepo;
   final CartRepo cartRepo;
 
   TextEditingController promoCode = TextEditingController();
@@ -89,6 +87,7 @@ class CartCubit extends Cubit<CartCubitState> {
       if (cartProducts.products!.isEmpty) {
         return emit(CartEmpty());
       }
+      calculateOrderDetails();
       emit(CartBaseState());
     });
   }
@@ -106,6 +105,7 @@ class CartCubit extends Cubit<CartCubitState> {
       } else {
         cartProducts.products!.addAll(newCartProduct.products!);
       }
+      calculateOrderDetails();
       emit(ProductAdded());
       emit(CartBaseState());
     });
@@ -119,6 +119,7 @@ class CartCubit extends Cubit<CartCubitState> {
       int index = findProductIndex(productId: productId);
       cartProducts.products![index].quantity =
           cartProducts.products![index].quantity! + 1;
+      calculateOrderDetails();
       emit(ProductQuantityChanged());
     });
   }
@@ -131,6 +132,7 @@ class CartCubit extends Cubit<CartCubitState> {
       int index = findProductIndex(productId: productId);
       cartProducts.products![index].quantity =
           cartProducts.products![index].quantity! - 1;
+      calculateOrderDetails();
       if (cartProducts.products![index].quantity == 0) {
         cartProducts.products!.removeAt(index);
         return emit(CartEmpty());

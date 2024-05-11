@@ -4,9 +4,13 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:moto_mender_mvvm/cache/cache_helper.dart';
+import 'package:moto_mender_mvvm/core/services/socket_io.dart';
 import 'package:moto_mender_mvvm/models/user.dart';
+import 'package:moto_mender_mvvm/utils/functions/navigate_with_animation.dart';
 import 'package:moto_mender_mvvm/utils/functions/navigation_with_slide.dart';
+import 'package:moto_mender_mvvm/view/screens/orders_view.dart';
 import 'package:moto_mender_mvvm/view_models/login_view_model.dart';
+import 'package:moto_mender_mvvm/view_models/confirm_order_view_mdoel/confirm_order_view_model.dart';
 import 'package:moto_mender_mvvm/view_models/support_view_model/cubit/chat_cubit.dart';
 import 'package:moto_mender_mvvm/view_models/support_view_model/support_view_model.dart';
 import '../widgets/profile_list_tile.dart';
@@ -57,6 +61,7 @@ class ProfileView extends StatelessWidget {
             ),
             const Gap(10),
             ProfileListTiles(
+              onTap: () => navigationWithSlide(context, OrdersView()),
               icon: Icons.shopping_cart_checkout,
               style: style,
               text: 'Orders',
@@ -67,16 +72,21 @@ class ProfileView extends StatelessWidget {
               text: 'Address',
             ),
             ProfileListTiles(
+              onTap: () {
+                navigationWithSlide(context, const SupportViewModel());
+              },
               icon: Icons.wallet,
               style: style,
               text: 'Wallet',
             ),
             ProfileListTiles(
               onTap: () {
-                print('Triggred the method');
+                // context
+                //     .read<ChatCubit>()
+                //     .createChatRoom(adminId: '6628da3921a3a72fffb3153f');
                 context
                     .read<ChatCubit>()
-                    .createChatRoom(adminId: '6628da3921a3a72fffb3153f');
+                    .joinChatRoom(chatRoomId: '663fd06fd8e114d11d726ed9');
                 navigationWithSlide(context, const SupportViewModel());
               },
               icon: Icons.mail_outline_rounded,

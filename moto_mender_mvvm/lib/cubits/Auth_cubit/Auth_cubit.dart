@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
 import 'package:moto_mender_mvvm/cache/cache_helper.dart';
@@ -53,6 +52,12 @@ class AuthCubit extends Cubit<AuthState> {
       loginPassword.clear();
       emit(LoginSuccess());
     });
+  }
+
+  Future<void> googleSingIn() async {
+    final response = await authRepo.googleSignIn();
+    response.fold((errorMessage) => emit(SignUpFailed(message: errorMessage)),
+        (success) => emit(LoginSuccess()));
   }
 
   Future<void> signUp() async {

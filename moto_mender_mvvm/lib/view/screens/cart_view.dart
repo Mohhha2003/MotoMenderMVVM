@@ -6,6 +6,7 @@ import 'package:moto_mender_mvvm/utils/functions/navigation_with_slide.dart';
 import 'package:moto_mender_mvvm/view/widgets/custom_button.dart';
 import 'package:moto_mender_mvvm/view/widgets/product_back_button.dart';
 import 'package:moto_mender_mvvm/view_models/cart_view_model/cubit/cart_cubit_cubit.dart';
+import 'package:moto_mender_mvvm/view_models/confirm_order_view_mdoel/confirm_order_view_model.dart';
 import '../adapter/cart_product_adapter.dart';
 
 class CartView extends StatelessWidget {
@@ -39,11 +40,15 @@ class CartView extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 20),
                 child: CustomButton(
                   onPressed: () {
-                    // navigationWithSlide(context, const )
+                    navigationWithSlide(
+                        context,
+                        ConfirmOrderViewModel(
+                          products: cartProducts.products,
+                        ));
                   },
                   style: style,
                   text: 'Check Out ',
-                  padding:const EdgeInsets.symmetric(vertical: 25),
+                  padding: const EdgeInsets.symmetric(vertical: 25),
                 ),
               )
             ],

@@ -18,3 +18,14 @@ final class StoreFailed extends StoreState {
 
   StoreFailed(this.message);
 }
+
+//   VEIW ALL STATES
+final class EndReached extends StoreState {}
+
+final class PagenationSuccesss extends StoreState {}
+
+final class PagenationFailed extends StoreState {
+  final String message;
+
+  PagenationFailed({required this.message});
+}

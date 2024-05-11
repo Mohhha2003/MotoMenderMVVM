@@ -9,9 +9,11 @@ class StoreRepo {
 
   StoreRepo({required this.api});
 
-  Future<Either<String, ProductRequestModel>> getAllProducts() async {
+  Future<Either<String, ProductRequestModel>> fetchProducts(
+      {Map<String, dynamic>? queryParameters}) async {
     try {
-      final respone = await api.get(EndPoint.products);
+      final respone =
+          await api.get(EndPoint.products, queryParameters: queryParameters);
       final products = ProductRequestModel.fromJson(respone);
       return Right(products);
     } on ServerException catch (e) {

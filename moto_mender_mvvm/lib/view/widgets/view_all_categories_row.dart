@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moto_mender_mvvm/utils/functions/navigation_with_slide.dart';
-import 'package:moto_mender_mvvm/view/screens/view_all_view.dart';
+import 'package:moto_mender_mvvm/view_models/view_all_view_model/view_all_view_model.dart';
 
 class ViewAllCategoriesRow extends StatelessWidget {
   const ViewAllCategoriesRow({
@@ -21,7 +21,7 @@ class ViewAllCategoriesRow extends StatelessWidget {
             const Spacer(),
             TextButton(
                 onPressed: () {
-                  navigationWithSlide(context, const ViewAllView());
+                  navigationWithSlide(context, const ViewAllViewModel());
                 },
                 child: Text(
                   'View All',

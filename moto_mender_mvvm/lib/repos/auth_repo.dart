@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:moto_mender_mvvm/core/api/api_consumer.dart';
 import 'package:moto_mender_mvvm/core/api/endpoints.dart';
+import 'package:moto_mender_mvvm/core/errors/error_model.dart';
 import 'package:moto_mender_mvvm/core/errors/exceptions.dart';
 import 'package:moto_mender_mvvm/models/auth_model/auth_model.dart';
 
@@ -84,6 +85,25 @@ class AuthRepo {
       final response = await api.put(EndPoint.updateAccount,
           data: {ApiKey.id: id, ApiKey.isVerified: true});
       return Right(response['message']);
+    } on ServerException catch (e) {
+      return Left(e.errorModel.errorMessage);
+    }
+  }
+
+  Future<Either<String, String>> googleSignIn() async {
+    try {
+      final respones = await api.get(EndPoint.googleSignIn);
+      print('The data from google signin is ${respones}');
+      return Right('Success');
+    } on ServerException catch (e) {
+      return Left(e.errorModel.errorMessage);
+    }
+  }
+
+  Future<Either<String, ErrorModel>> logOut() async {
+    try {
+      final response = await api.get(EndPoint.logOut);
+      return Right(ErrorModel.fromJson(response));
     } on ServerException catch (e) {
       return Left(e.errorModel.errorMessage);
     }

@@ -14,8 +14,10 @@ class ChatState {
   final String? errorMessage;
   final ChatStatus status;
   final String? chatRoomId;
+  final bool? isUserTyping;
 
   ChatState({
+    this.isUserTyping,
     this.messages,
     this.chatRoomId,
     this.receivedMessage,
@@ -24,16 +26,19 @@ class ChatState {
   });
 
   factory ChatState.initial() {
-    return ChatState(status: ChatStatus.initial);
+    return ChatState(
+        status: ChatStatus.initial, messages: [], isUserTyping: false);
   }
 
   ChatState copyWith(
       {MessageModel? receivedMessage,
+      bool? isUserTyping,
       List<MessageModel>? messages,
       String? errorMessage,
       ChatStatus? status,
       String? chatRoomId}) {
     return ChatState(
+      isUserTyping: isUserTyping ?? this.isUserTyping,
       messages: messages ?? this.messages,
       chatRoomId: chatRoomId ?? this.chatRoomId,
       receivedMessage: receivedMessage ?? this.receivedMessage,
@@ -45,7 +50,6 @@ class ChatState {
   ChatState addMessage(MessageModel message) {
     List<MessageModel> updatedMessages = List.from(messages ?? [])
       ..add(message);
-    print('The lenght is ${updatedMessages.length}');
     return copyWith(messages: updatedMessages);
   }
 }

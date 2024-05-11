@@ -112,13 +112,18 @@ class LoginView extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        padding: const EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(width: .2),
+                      InkWell(
+                        onTap: () async {
+                          await context.read<AuthCubit>().googleSingIn();
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(width: .2),
+                          ),
+                          child: Image.asset('assets/image/google.png'),
                         ),
-                        child: Image.asset('assets/image/google.png'),
                       ),
                       const Gap(60),
                       Container(

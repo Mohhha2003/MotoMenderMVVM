@@ -1,15 +1,15 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moto_mender_mvvm/cache/cache_helper.dart';
 import 'package:moto_mender_mvvm/core/api/dio_consumer.dart';
+import 'package:moto_mender_mvvm/core/get_it/get_it.dart';
+import 'package:moto_mender_mvvm/core/services/socket_io.dart';
 import 'package:moto_mender_mvvm/cubits/Auth_cubit/Auth_cubit.dart';
 import 'package:moto_mender_mvvm/cubits/store_cubit/store_cubit.dart';
 import 'package:moto_mender_mvvm/repos/auth_repo.dart';
 import 'package:moto_mender_mvvm/repos/cart_repo.dart';
 import 'package:moto_mender_mvvm/repos/favorites_repo.dart';
-import 'package:moto_mender_mvvm/repos/orders_repo.dart';
 import 'package:moto_mender_mvvm/repos/store_repo.dart';
 import 'package:moto_mender_mvvm/repos/support_service_repo.dart';
 import 'package:moto_mender_mvvm/view/screens/introduction_view.dart';
@@ -21,6 +21,7 @@ import 'view_models/bottom_nav_bar_view_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  setUpGetIt();
   await CacheHelper().init();
   await CacheHelper().isUserSaved();
   runApp(const MyApp());
@@ -33,23 +34,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (context) => StoreCubit(getIt<StoreRepo>())),
         BlocProvider(
             create: (context) =>
-                StoreCubit(StoreRepo(api: DioConsumer(dio: Dio())))),
+                AuthCubit(AuthRepo(api: getIt<DioConsumer>()))),
         BlocProvider(
             create: (context) =>
-                AuthCubit(AuthRepo(api: DioConsumer(dio: Dio())))),
-        BlocProvider(
-            create: (context) => CartCubit(
-                OrdersRepo(api: DioConsumer(dio: Dio())),
-                CartRepo(api: DioConsumer(dio: Dio())))),
+                CartCubit(CartRepo(api: getIt<DioConsumer>()))),
         BlocProvider(
           create: (context) =>
-              FavoritesCubit(FavoritesRepo(api: DioConsumer(dio: Dio()))),
+              FavoritesCubit(FavoritesRepo(api: getIt<DioConsumer>())),
         ),
         BlocProvider(
           create: (context) =>
-              ChatCubit(SupportServiceRepo(api: DioConsumer(dio: Dio()))),
+              ChatCubit(SupportServiceRepo(api: getIt<DioConsumer>()),),
           child: const SupportViewModel(),
         )
       ],

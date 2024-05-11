@@ -1,5 +1,5 @@
 class EndPoint {
-  static String baseUrl = "http://10.0.2.2:800";
+  static String baseUrl = "http://192.168.1.17:800";
   //  AUTHENTICATION ENDPOINTS
   static String signIn = '/auth/login';
   static String signUp = '/auth/register';
@@ -7,6 +7,8 @@ class EndPoint {
   static String resetPassword = '/auth/resetPassword';
   static String verfiyEmail = '/auth/verfiyEmail';
   static String updateAccount = '/auth/updateAccount';
+  static String googleSignIn = '/auth/google';
+  static String logOut = '/auth/logout';
   //  FAVORITES ENDPOINTS
   static String getAllFavorties =
       '/favourites/getFavoriteProducts/:userId/favoriteProducts';
@@ -56,4 +58,9 @@ class ApiKey {
   static String reciverId = 'receiverId';
   static String content = 'content';
   static String chatRoomId = 'chatRoomId';
+  // SOCKET STATES KEYS
+  static String message = 'message';
+  static String typing = 'typing';
+  static String stopTyping = 'stopTyping';
+  static String disconnect='disconnect';
 }
