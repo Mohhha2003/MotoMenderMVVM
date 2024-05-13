@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:moto_mender_mvvm/cache/cache_helper.dart';
 import 'package:moto_mender_mvvm/core/api/endpoints.dart';
+import 'package:moto_mender_mvvm/models/chat_models/message_model.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 // import 'package:socket_io_client/socket_io_client.dart' as IO;
 
@@ -10,6 +12,53 @@ class SocketIo {
     "autoConnect": false
   });
 
+  void listenToMessages(Function(String)? onMessageReceived) {
+    socket.on(
+        ApiKey.message,
+        (message) => {
+              onMessageReceived!(message),
+            });
+  }
+
+//   SOCKET EMIITERS
+
+  void sendMessage(
+      {required String reciverId,
+      required String content,
+      required String chatRoomId}) {
+    // Creating New instance of MessageModel
+    MessageModel newMessage = MessageModel(
+        content: content,
+        receiver: reciverId,
+        sender: CacheHelper.currentUser.id!,
+        timestamp: DateTime.now());
+    // Sending The instance to the server
+    socket.emit('message', {
+      {newMessage.toJson()}
+    });
+  }
+
+  void joinChatRoom({required String chatRoomId}) {
+    socket.emit('joinRoom', {chatRoomId});
+  }
+
+  void adminActive() {
+    socket.emit('adminActive');
+  }
+
+  void userIsTyping() {
+    socket.emit('typing');
+  }
+
+  void userStopTyping() {
+    socket.emit('stopTyping');
+  }
+
+  void userDisconnected() {
+    socket.emit('disonncet');
+  }
+
+  //   SOKCET LISTENERS
   bool connect() {
     socket.connect();
     socket.onConnect((data) => print('Connected'));
@@ -17,38 +66,32 @@ class SocketIo {
     return socket.connected;
   }
 
-  void sendMessage(
-      {required String reciverId,
-      required String content,
-      required String chatRoomId}) {
-    socket.emit('message', {
-      ApiKey.reciverId: reciverId,
-      ApiKey.senderId: CacheHelper.currentUser.id!,
-      ApiKey.content: content,
-      ApiKey.chatRoomId: chatRoomId
+  void listenUseDisconnected({void Function(String)? callback}) {
+    socket.onDisconnect((data) => callback);
+  }
+
+  void listenChatRoomActive({void Function(String)? callback}) {
+    socket.on('chatRoomActive', (chatRoomId) {
+      callback!(chatRoomId);
     });
   }
 
-  void listenToMessages(Function(dynamic) onMessageReceived) {
-    print('Started Listening....');
-    socket.on(
-        ApiKey.message,
-        (message) => {
-              print('hello'),
-              onMessageReceived(message),
-            });
+  void listenToMessage({void Function(MessageModel)? callback}) {
+    socket.on(ApiKey.message, (message) {
+      MessageModel.fromJson(message);
+      callback!(message);
+    });
   }
 
-  void joinChatRoom({required String chatRoomId}) {
-    socket.emit('joinRoom', {chatRoomId});
+  void listenUserTyping({void Function(String)? callback}) {
+    socket.on('typing', (data) {
+      callback!(data);
+    });
   }
 
-  bool isUserTyping() {
-    bool isTyping = false;
-    socket.on(ApiKey.typing, (data) => isTyping = true);
-    if (isTyping) {
-      return isTyping;
-    }
-    return isTyping;
+  void listenUserStopTyping({void Function(String)? callback}) {
+    socket.on('stopTyping', (data) {
+      callback!(data);
+    });
   }
 }

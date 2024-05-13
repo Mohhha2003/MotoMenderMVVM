@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moto_mender_mvvm/utils/functions/navigate_with_animation.dart';
-import 'package:moto_mender_mvvm/view_models/cart_view_model/cart_view_model.dart';
+import 'package:moto_mender_mvvm/view_models/cart_view/cart_view_model.dart';
 
 class CartViewButton extends StatelessWidget {
   const CartViewButton({

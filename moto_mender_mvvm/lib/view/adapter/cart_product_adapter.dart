@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:moto_mender_mvvm/models/cart_model/cart_product_list_model.dart';
 import 'package:moto_mender_mvvm/models/product.dart';
-import 'package:moto_mender_mvvm/view_models/cart_view_model/cubit/cart_cubit_cubit.dart';
+import 'package:moto_mender_mvvm/view_models/cart_view/cubit/cart_cubit_cubit.dart';
 import '../widgets/product_quantity_row.dart';
 
 class CartProdcutAdapter extends StatelessWidget {

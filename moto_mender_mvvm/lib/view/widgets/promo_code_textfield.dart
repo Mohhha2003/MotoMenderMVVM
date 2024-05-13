@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moto_mender_mvvm/view_models/cart_view_model/cubit/cart_cubit_cubit.dart';
+import 'package:moto_mender_mvvm/view_models/cart_view/cubit/cart_cubit_cubit.dart';
 
 class PromoCodeTextFiled extends StatelessWidget {
   const PromoCodeTextFiled({

@@ -19,8 +19,12 @@ void showSortAndFilterBottomSheet(
                 'Sort&Filter',
               ),
             ),
-            SortAndFliterSection(title: 'Categories'),
-            SortAndFliterSection(title: 'Price'),
+            SortAndFliterSection(
+              title: 'Categories',
+              categories: ["price", "ratingAverage"],
+            ),
+            SortAndFliterSection(
+                title: 'Type', categories: ["Asending", "Dsending"]),
           ],
         ),
       );
@@ -29,29 +33,29 @@ void showSortAndFilterBottomSheet(
 }
 
 class SortAndFliterSection extends StatelessWidget {
-  const SortAndFliterSection({super.key, required this.title});
+  const SortAndFliterSection(
+      {super.key, required this.title, required this.categories});
 
   final String title;
+  final List<String> categories;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          padding: const EdgeInsets.only(left: 10, bottom: 10),
-          alignment: Alignment.centerLeft,
-          child: Text(
-            title,
-            style: Theme.of(context).textTheme.titleLarge,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.only(left: 10, bottom: 10),
+            alignment: Alignment.centerLeft,
+            child: Text(
+              title,
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
           ),
-        ),
-        const CategorieListView(categories: [
-          'Cat 1',
-          'Cat 2',
-          'Cat 3',
-          'Cat 4',
-        ]),
-      ],
+          CategorieListView(categories: categories),
+        ],
+      ),
     );
   }
 }

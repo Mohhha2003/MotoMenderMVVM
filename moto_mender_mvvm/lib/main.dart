@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:moto_mender_mvvm/cache/cache_helper.dart';
 import 'package:moto_mender_mvvm/core/api/dio_consumer.dart';
 import 'package:moto_mender_mvvm/core/get_it/get_it.dart';
-import 'package:moto_mender_mvvm/core/services/socket_io.dart';
 import 'package:moto_mender_mvvm/cubits/Auth_cubit/Auth_cubit.dart';
 import 'package:moto_mender_mvvm/cubits/store_cubit/store_cubit.dart';
 import 'package:moto_mender_mvvm/repos/auth_repo.dart';
@@ -13,8 +12,8 @@ import 'package:moto_mender_mvvm/repos/favorites_repo.dart';
 import 'package:moto_mender_mvvm/repos/store_repo.dart';
 import 'package:moto_mender_mvvm/repos/support_service_repo.dart';
 import 'package:moto_mender_mvvm/view/screens/introduction_view.dart';
-import 'package:moto_mender_mvvm/view_models/cart_view_model/cubit/cart_cubit_cubit.dart';
-import 'package:moto_mender_mvvm/view_models/favorties_view_model/cubit/favorites_cubit.dart';
+import 'package:moto_mender_mvvm/view_models/cart_view/cubit/cart_cubit_cubit.dart';
+import 'package:moto_mender_mvvm/view_models/favorties/cubit/favorites_cubit.dart';
 import 'package:moto_mender_mvvm/view_models/support_view_model/cubit/chat_cubit.dart';
 import 'package:moto_mender_mvvm/view_models/support_view_model/support_view_model.dart';
 import 'view_models/bottom_nav_bar_view_model.dart';
@@ -47,9 +46,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) =>
-              ChatCubit(SupportServiceRepo(api: getIt<DioConsumer>()),),
+              ChatCubit(SupportServiceRepo(api: getIt<DioConsumer>())),
           child: const SupportViewModel(),
-        )
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -4,7 +4,7 @@ import 'package:moto_mender_mvvm/cache/cache_helper.dart';
 import 'package:moto_mender_mvvm/cubits/store_cubit/store_cubit.dart';
 import 'package:moto_mender_mvvm/view/screens/store_view.dart';
 
-import 'favorties_view_model/cubit/favorites_cubit.dart';
+import 'favorties/cubit/favorites_cubit.dart';
 
 class StoreViewModel extends StatelessWidget {
   const StoreViewModel({super.key});

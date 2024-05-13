@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:moto_mender_mvvm/models/product.dart';
 import 'package:moto_mender_mvvm/view/adapter/favorite_product_adapter.dart';
-import 'package:moto_mender_mvvm/view_models/favorties_view_model/cubit/favorites_cubit.dart';
+import 'package:moto_mender_mvvm/view_models/favorties/cubit/favorites_cubit.dart';
 
 class FavoritesView extends StatelessWidget {
   const FavoritesView({super.key});

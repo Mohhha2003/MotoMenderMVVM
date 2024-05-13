@@ -27,6 +27,12 @@ class _SupportViewState extends State<SupportView> {
   }
 
   @override
+  void dispose() {
+    context.read<ChatCubit>().userDisconnected();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var style = Theme.of(context).textTheme;
     return Scaffold(

@@ -9,7 +9,7 @@ import 'package:moto_mender_mvvm/utils/functions/floating_bottom_sheet.dart';
 import 'package:moto_mender_mvvm/utils/functions/navigation_with_slide_replacment.dart';
 import 'package:moto_mender_mvvm/view/screens/confirm_order_view.dart';
 import 'package:moto_mender_mvvm/view_models/bottom_nav_bar_view_model.dart';
-import 'package:moto_mender_mvvm/view_models/confirm_order_view_mdoel/cubit/order_cubit.dart';
+import 'package:moto_mender_mvvm/view_models/confirm_order/cubit/order_cubit.dart';
 
 class ConfirmOrderViewModel extends StatelessWidget {
   const ConfirmOrderViewModel({super.key, this.products});

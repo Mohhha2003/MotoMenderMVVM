@@ -26,14 +26,11 @@ class ViewAllCubit extends Cubit<ViewAllState> {
     }
   }
 
-  Future<void> onEndReached(ScrollController controller) async {
-    double maxScroll = controller.position.maxScrollExtent;
-    double currentScroll = controller.position.pixels;
-
-    if (maxScroll == currentScroll) {
-      emit(state.copyWith(page: state.page));
-      await fetchMoreProducts();
-    }
+  Future<void> onEndReached() async {
+    
+        emit(state.copyWith(page: state.page));
+        await fetchMoreProducts();
+      
   }
 
   Future<void> fetchMoreProducts() async {

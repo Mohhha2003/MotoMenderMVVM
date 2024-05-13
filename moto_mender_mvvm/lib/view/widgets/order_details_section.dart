@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moto_mender_mvvm/view_models/cart_view_model/cubit/cart_cubit_cubit.dart';
-import 'package:moto_mender_mvvm/view_models/confirm_order_view_mdoel/cubit/order_cubit.dart';
+import 'package:moto_mender_mvvm/view_models/cart_view/cubit/cart_cubit_cubit.dart';
+import 'package:moto_mender_mvvm/view_models/confirm_order/cubit/order_cubit.dart';
 import 'cart_order_deatils_row.dart';
 import 'custom_button.dart';
 import 'promo_code_textfield.dart';

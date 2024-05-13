@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moto_mender_mvvm/utils/functions/navigation_with_slide.dart';
 import 'package:moto_mender_mvvm/view/widgets/custom_button.dart';
 import 'package:moto_mender_mvvm/view/widgets/product_back_button.dart';
-import 'package:moto_mender_mvvm/view_models/cart_view_model/cubit/cart_cubit_cubit.dart';
-import 'package:moto_mender_mvvm/view_models/confirm_order_view_mdoel/confirm_order_view_model.dart';
+import 'package:moto_mender_mvvm/view_models/cart_view/cubit/cart_cubit_cubit.dart';
+import 'package:moto_mender_mvvm/view_models/confirm_order/confirm_order_view_model.dart';
 import '../adapter/cart_product_adapter.dart';
 
 class CartView extends StatelessWidget {

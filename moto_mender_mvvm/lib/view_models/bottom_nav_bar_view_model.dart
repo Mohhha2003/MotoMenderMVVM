@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moto_mender_mvvm/cache/cache_helper.dart';
 import 'package:moto_mender_mvvm/view/screens/profile_view.dart';
-import 'package:moto_mender_mvvm/view/screens/search_view.dart';
-import 'package:moto_mender_mvvm/view_models/favorties_view_model/favorites_view_model.dart';
+import 'package:moto_mender_mvvm/view_models/favorties/favorites_view_model.dart';
+import 'package:moto_mender_mvvm/view_models/search/search_view_model.dart';
 import 'package:moto_mender_mvvm/view_models/store_view_model.dart';
+import 'package:moto_mender_mvvm/view_models/support_view_model/cubit/chat_cubit.dart';
 
 class BottomNavBarViewModel extends StatefulWidget {
   const BottomNavBarViewModel({super.key});
@@ -12,6 +15,17 @@ class BottomNavBarViewModel extends StatefulWidget {
 }
 
 class _BottomNavBarViewModelState extends State<BottomNavBarViewModel> {
+  @override
+  void initState() {
+    if (CacheHelper.currentUser.role == 'admin') {
+      //   Start Chat cubit listener for customer support
+      context.read<ChatCubit>().connectSocket();
+      context.read<ChatCubit>().adminActive();
+      context.read<ChatCubit>().listenChatRoomActive(context: context);
+    }
+    super.initState();
+  }
+
   Widget currentWidget = const StoreViewModel();
   int index = 0;
 
@@ -22,7 +36,7 @@ class _BottomNavBarViewModelState extends State<BottomNavBarViewModel> {
           currentWidget = const StoreViewModel();
           break;
         case 1:
-          currentWidget = SearchView();
+          currentWidget = const SearchViewModel();
           break;
         case 2:
           currentWidget = const FavortiesViewModel();

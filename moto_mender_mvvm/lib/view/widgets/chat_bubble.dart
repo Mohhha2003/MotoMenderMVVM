@@ -10,7 +10,7 @@ class ChatBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5),
+      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10 ),
       child: Column(
         crossAxisAlignment: message.sender == CacheHelper.currentUser.id
             ? CrossAxisAlignment.end
@@ -20,7 +20,16 @@ class ChatBubble extends StatelessWidget {
               padding: const EdgeInsets.all(15),
               decoration: BoxDecoration(
                   color: Colors.greenAccent,
-                  borderRadius: BorderRadius.circular(12)),
+                  borderRadius: BorderRadius.only(
+                    topLeft: const Radius.circular(12),
+                    topRight: const Radius.circular(12),
+                    bottomLeft: message.sender == CacheHelper.currentUser.id
+                        ? const Radius.circular(12)
+                        : Radius.zero,
+                    bottomRight: message.sender == CacheHelper.currentUser.id
+                        ? Radius.zero
+                        : const Radius.circular(12),
+                  )),
               child: Column(
                 children: [
                   Text(message.content ?? 'unkown'),

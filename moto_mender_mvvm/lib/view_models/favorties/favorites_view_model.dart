@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moto_mender_mvvm/utils/functions/floating_bottom_sheet.dart';
 import 'package:moto_mender_mvvm/view/screens/favorites_view.dart';
 import 'package:moto_mender_mvvm/view/widgets/empty_widgets.dart';
-import 'package:moto_mender_mvvm/view_models/favorties_view_model/cubit/favorites_cubit.dart';
+import 'package:moto_mender_mvvm/view_models/favorties/cubit/favorites_cubit.dart';
 
 class FavortiesViewModel extends StatelessWidget {
   const FavortiesViewModel({super.key});

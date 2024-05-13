@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moto_mender_mvvm/core/get_it/get_it.dart';
-import 'package:moto_mender_mvvm/cubits/store_cubit/store_cubit.dart';
 import 'package:moto_mender_mvvm/repos/store_repo.dart';
 import 'package:moto_mender_mvvm/utils/functions/dialog_utils.dart';
 import 'package:moto_mender_mvvm/utils/functions/floating_bottom_sheet.dart';
@@ -15,7 +14,7 @@ class ViewAllViewModel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
+    return BlocProvider<ViewAllCubit>(
       create: (context) => ViewAllCubit(getIt<StoreRepo>()),
       child: BlocConsumer<ViewAllCubit, ViewAllState>(
         listener: (context, state) {

@@ -62,5 +62,6 @@ class ApiKey {
   static String message = 'message';
   static String typing = 'typing';
   static String stopTyping = 'stopTyping';
-  static String disconnect='disconnect';
+  static String disconnect = 'disconnect';
+  static String adminActive = 'adminActive';
 }

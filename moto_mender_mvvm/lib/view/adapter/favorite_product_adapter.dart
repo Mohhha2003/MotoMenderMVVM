@@ -6,7 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:moto_mender_mvvm/models/product.dart';
 import 'package:moto_mender_mvvm/utils/functions/navigate_with_animation.dart';
 import 'package:moto_mender_mvvm/view/widgets/custom_image_network.dart';
-import 'package:moto_mender_mvvm/view_models/favorties_view_model/cubit/favorites_cubit.dart';
+import 'package:moto_mender_mvvm/view_models/favorties/cubit/favorites_cubit.dart';
 import 'package:moto_mender_mvvm/view_models/product_view_model.dart';
 
 class FavoritesAdapterCard extends StatelessWidget {

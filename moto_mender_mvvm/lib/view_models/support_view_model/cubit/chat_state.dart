@@ -4,6 +4,7 @@ enum ChatStatus {
   initial,
   messageSentSuccess,
   messageReceived,
+  sessionEnd,
   failed,
   chatRoomSuccess
 }

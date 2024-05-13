@@ -4,13 +4,10 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:moto_mender_mvvm/cache/cache_helper.dart';
-import 'package:moto_mender_mvvm/core/services/socket_io.dart';
 import 'package:moto_mender_mvvm/models/user.dart';
-import 'package:moto_mender_mvvm/utils/functions/navigate_with_animation.dart';
 import 'package:moto_mender_mvvm/utils/functions/navigation_with_slide.dart';
 import 'package:moto_mender_mvvm/view/screens/orders_view.dart';
 import 'package:moto_mender_mvvm/view_models/login_view_model.dart';
-import 'package:moto_mender_mvvm/view_models/confirm_order_view_mdoel/confirm_order_view_model.dart';
 import 'package:moto_mender_mvvm/view_models/support_view_model/cubit/chat_cubit.dart';
 import 'package:moto_mender_mvvm/view_models/support_view_model/support_view_model.dart';
 import '../widgets/profile_list_tile.dart';
@@ -81,12 +78,11 @@ class ProfileView extends StatelessWidget {
             ),
             ProfileListTiles(
               onTap: () {
-                // context
-                //     .read<ChatCubit>()
-                //     .createChatRoom(adminId: '6628da3921a3a72fffb3153f');
+                context.read<ChatCubit>().connectSocket();
                 context
                     .read<ChatCubit>()
                     .joinChatRoom(chatRoomId: '663fd06fd8e114d11d726ed9');
+                // .joinChatRoom(chatRoomId: '663fd06fd8e114d11d726ed9');
                 navigationWithSlide(context, const SupportViewModel());
               },
               icon: Icons.mail_outline_rounded,
