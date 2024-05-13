@@ -8,7 +8,7 @@ class StoreCategorieButton extends StatelessWidget {
   });
 
   final String text;
-  final void Function()? onPressed;
+  final void Function(String)? onPressed;
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
@@ -17,7 +17,7 @@ class StoreCategorieButton extends StatelessWidget {
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(5)),
         color: const Color(0xff0CBB80),
-        onPressed: () => onPressed!(),
+        onPressed: () => onPressed!(text),
         child: Text(
           text,
           style: Theme.of(context).textTheme.bodySmall,

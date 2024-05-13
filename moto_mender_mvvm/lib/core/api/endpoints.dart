@@ -20,7 +20,7 @@ class EndPoint {
   static String orders = '/orders';
   static String getAllOrders = '/orders/';
   static String placeNewOrder = '/orders/';
-  static String getUserOrders = '/orders/:id';
+  static String getUserOrders = '/orders/user';
   // CART ENDPOINTS
   static String addToCart = '/cart';
   static String getCartProdcuts = '/cart';

@@ -1,61 +1,72 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:moto_mender_mvvm/view/widgets/categorie_list_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
+import 'package:moto_mender_mvvm/view/widgets/custom_button.dart';
+import 'package:moto_mender_mvvm/view/widgets/sort_and_filter_section.dart';
+import 'package:moto_mender_mvvm/view_models/search/cubit/search_cubit.dart';
 
-void showSortAndFilterBottomSheet(
-    BuildContext context, GlobalKey<ScaffoldState> scaffoldstate) {
+void showSortAndFilterBottomSheet(BuildContext context,
+    GlobalKey<ScaffoldState> scaffoldstate) {
+  String sort = '';
+  String sortOrder = '';
   scaffoldstate.currentState!.showBottomSheet(
     (context) {
       return Container(
-        decoration: BoxDecoration(
-            color: Colors.greenAccent, borderRadius: BorderRadius.circular(30)),
+        decoration: const BoxDecoration(
+            color: Colors.greenAccent,
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20), topRight: Radius.circular(20))),
         height: MediaQuery.of(context).size.height * .6,
-        child: const Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Padding(
+            const Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(
                 'Sort&Filter',
               ),
             ),
             SortAndFliterSection(
+              onPressed: (param) {
+                sort = param;
+              },
               title: 'Categories',
-              categories: ["price", "ratingAverage"],
+              categories: const ["price", "ratingAverage"],
             ),
             SortAndFliterSection(
-                title: 'Type', categories: ["Asending", "Dsending"]),
+                onPressed: (param) {
+                  sortOrder = param;
+                },
+                title: 'Type',
+                categories: const ["asc", "desc"]),
+            SortAndFliterSection(
+                onPressed: (param) {
+                  sortOrder = param;
+                },
+                title: 'Range',
+                categories: const [
+                  "10000 L.E",
+                  "20000 L.E",
+                  "30000 L.E",
+                  "40000 L.E",
+                  "50000 L.E"
+                ]),
+            const Spacer(),
+            CustomButton(
+              onPressed: () {
+                context
+                    .read<SearchCubit>()
+                    .setQueryParameter(sort: sort, sortOrder: sortOrder);
+              },
+              style: Theme.of(context).textTheme,
+              text: 'Search',
+              padding: const EdgeInsets.symmetric(vertical: 20),
+            ),
+            const Gap(20),
           ],
         ),
       );
     },
   );
-}
-
-class SortAndFliterSection extends StatelessWidget {
-  const SortAndFliterSection(
-      {super.key, required this.title, required this.categories});
-
-  final String title;
-  final List<String> categories;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.only(left: 10, bottom: 10),
-            alignment: Alignment.centerLeft,
-            child: Text(
-              title,
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-          ),
-          CategorieListView(categories: categories),
-        ],
-      ),
-    );
-  }
 }

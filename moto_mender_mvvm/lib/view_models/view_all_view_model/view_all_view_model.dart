@@ -19,7 +19,6 @@ class ViewAllViewModel extends StatelessWidget {
       child: BlocConsumer<ViewAllCubit, ViewAllState>(
         listener: (context, state) {
           if (state.isLoading) {
-            showLoading(context);
           } else if (state.status == ViewAllStatus.fetchProductsFailed) {
             showFloatingBottomSheet(text: state.errorMessage, context: context);
           }

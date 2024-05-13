@@ -21,7 +21,7 @@ class ConfirmOrderViewModel extends StatelessWidget {
           ConfirmOrderCubit(OrdersRepo(api: DioConsumer(dio: Dio()))),
       child: BlocListener<ConfirmOrderCubit, OrderState>(
           listener: (context, state) {
-            if (state is OrderLoading) {
+            if (state is ConfirmOrderLoading) {
               showLoading(context);
             } else if (state is OrderPlaced) {
               Navigator.of(context).pop();

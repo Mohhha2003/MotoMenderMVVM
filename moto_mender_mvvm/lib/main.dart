@@ -20,7 +20,7 @@ import 'view_models/bottom_nav_bar_view_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  setUpGetIt();
+  setGetIt();
   await CacheHelper().init();
   await CacheHelper().isUserSaved();
   runApp(const MyApp());

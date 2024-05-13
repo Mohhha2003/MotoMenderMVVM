@@ -5,34 +5,39 @@ enum SearchStatus { inital, success, failed, updated }
 class SearchState {
   final List<Product> products;
   final SearchStatus status;
-  final String queryParameters;
+  final String? sort;
+  final String? sortOrder;
   final String? errorMessage;
   final bool isLoading;
 
   SearchState(
       {required this.products,
       required this.isLoading,
+      this.sortOrder,
       this.errorMessage,
       required this.status,
-      required this.queryParameters});
+      this.sort});
 
   factory SearchState.initial() => SearchState(
       status: SearchStatus.inital,
       products: [],
-      queryParameters: '',
-      isLoading: false);
+      isLoading: false,
+      sort: 'ratingAverage',
+      sortOrder: 'desc');
 
   SearchState copyWith(
       {List<Product>? products,
+      String? sortOrder,
       bool? isLoading,
       String? errorMessage,
       SearchStatus? status,
-      String? queryParameters}) {
+      String? sort}) {
     return SearchState(
         isLoading: isLoading ?? this.isLoading,
         errorMessage: errorMessage ?? this.errorMessage,
         status: status ?? this.status,
         products: products ?? this.products,
-        queryParameters: queryParameters ?? this.queryParameters);
+        sortOrder: sortOrder ?? this.sortOrder,
+        sort: sort ?? this.sort);
   }
 }

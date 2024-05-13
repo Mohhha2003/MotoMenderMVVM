@@ -6,8 +6,8 @@ import 'package:gap/gap.dart';
 import 'package:moto_mender_mvvm/cache/cache_helper.dart';
 import 'package:moto_mender_mvvm/models/user.dart';
 import 'package:moto_mender_mvvm/utils/functions/navigation_with_slide.dart';
-import 'package:moto_mender_mvvm/view/screens/orders_view.dart';
 import 'package:moto_mender_mvvm/view_models/login_view_model.dart';
+import 'package:moto_mender_mvvm/view_models/order_view_model/order_view_model.dart';
 import 'package:moto_mender_mvvm/view_models/support_view_model/cubit/chat_cubit.dart';
 import 'package:moto_mender_mvvm/view_models/support_view_model/support_view_model.dart';
 import '../widgets/profile_list_tile.dart';
@@ -58,7 +58,7 @@ class ProfileView extends StatelessWidget {
             ),
             const Gap(10),
             ProfileListTiles(
-              onTap: () => navigationWithSlide(context, OrdersView()),
+              onTap: () => navigationWithSlide(context, const OrderViewModel()),
               icon: Icons.shopping_cart_checkout,
               style: style,
               text: 'Orders',

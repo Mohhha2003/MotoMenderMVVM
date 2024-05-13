@@ -19,7 +19,6 @@ class OrdersRepo {
             products.map((product) => product.toJson()).toList(),
         ApiKey.userId: CacheHelper.currentUser.id,
       });
-
       return Right(response['message']);
     } on ServerException catch (e) {
       return Left(e.errorModel.errorMessage);
@@ -30,8 +29,8 @@ class OrdersRepo {
       {required String userId}) async {
     try {
       final resposne =
-          await api.get(EndPoint.getAllOrders, data: {ApiKey.userId: userId});
-      return Right(resposne);
+          await api.get(EndPoint.getUserOrders, data: {ApiKey.userId: userId});
+      return Right(OrderRequest.fromJson(resposne));
     } on ServerException catch (e) {
       return Left(e.errorModel.errorMessage);
     }

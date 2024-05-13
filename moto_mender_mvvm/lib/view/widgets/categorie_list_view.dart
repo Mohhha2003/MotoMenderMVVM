@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moto_mender_mvvm/view_models/search/cubit/search_cubit.dart';
-import 'package:moto_mender_mvvm/view_models/search/cubit/search_state.dart';
-
 import 'store_categorie_button.dart';
 
 class CategorieListView extends StatelessWidget {
@@ -13,7 +11,7 @@ class CategorieListView extends StatelessWidget {
   });
 
   final List<String> categories;
-  final void Function()? onPressed;
+  final void Function(String)? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +27,7 @@ class CategorieListView extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: StoreCategorieButton(
-              onPressed: () {
-                context
-                    .read<SearchCubit>()
-                    .setQueryParameter(queryParameter: categories[index]);
-              },
+              onPressed: onPressed ?? (text) {},
               text: categories[index],
             ),
           );

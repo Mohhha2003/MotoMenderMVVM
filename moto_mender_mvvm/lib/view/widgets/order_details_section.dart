@@ -35,6 +35,7 @@ class OrderDetailsSection extends StatelessWidget {
             onPressed: () {
               context.read<ConfirmOrderCubit>().placeNewOrder(
                   products: context.read<CartCubit>().cartProducts.products!);
+              context.read<CartCubit>().cartProducts.products?.clear();
             },
             style: style,
             text: 'Check Out',

@@ -5,7 +5,7 @@ import 'package:moto_mender_mvvm/repos/store_repo.dart';
 
 GetIt getIt = GetIt.instance;
 
-void setUpGetIt() {
+void setGetIt() {
   getIt.registerSingleton<Dio>(Dio());
   getIt.registerSingleton<DioConsumer>(DioConsumer(dio: getIt<Dio>()));
   getIt.registerSingleton<StoreRepo>(StoreRepo(api: getIt<DioConsumer>()));

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:moto_mender_mvvm/models/order_request/order_request.dart';
 
 class OrdersView extends StatelessWidget {
-  const OrdersView({super.key});
+  const OrdersView({super.key, required this.orders});
+
+  final OrderRequest orders;
 
   @override
   Widget build(BuildContext context) {
@@ -17,16 +20,19 @@ class OrdersView extends StatelessWidget {
         children: [
           Expanded(
               child: ListView.builder(
-            itemCount: 4,
+            itemCount: orders.count,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.all(5),
                 child: ListTile(
                   shape: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12)),
-                  title:const  Text('OrderId : dkljlafjlds'),
-                  subtitle:const  Text('total : 40324'),
-                  trailing:const Text('Status: Preparing'),
+                  title: Text(
+                    'OrderId : ${orders.orders?[index].orderId}',
+                    textAlign: TextAlign.justify,
+                  ),
+                  subtitle: Text('total :  ${orders.orders?[index].orderDate}'),
+                  trailing: Text('Status:  ${orders.orders?[index].status}'),
                 ),
               );
             },

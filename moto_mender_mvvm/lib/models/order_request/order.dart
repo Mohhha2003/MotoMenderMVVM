@@ -1,7 +1,5 @@
 import 'package:moto_mender_mvvm/models/product.dart';
 
-import 'product.dart';
-
 class Order {
   String? userId;
   String? status;
@@ -20,7 +18,7 @@ class Order {
   factory Order.fromJson(Map<String, dynamic> json) => Order(
         userId: json['userId'] as String?,
         status: json['status'] as String?,
-        products: (json['products'] as List<dynamic>?)
+        products: (json['productId'] as List<dynamic>?)
             ?.map((e) => Product.fromJson(e as Map<String, dynamic>))
             .toList(),
         orderId: json['orderId'] as String?,
