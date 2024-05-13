@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moto_mender_mvvm/utils/functions/dialog_utils.dart';
+import 'package:moto_mender_mvvm/utils/functions/show_loading.dart';
 import 'package:moto_mender_mvvm/utils/functions/show_snackbar.dart';
 import 'package:moto_mender_mvvm/view/screens/cart_view.dart';
 import 'package:moto_mender_mvvm/view/widgets/empty_widgets.dart';

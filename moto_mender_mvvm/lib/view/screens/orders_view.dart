@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:moto_mender_mvvm/models/order_request/order.dart';
-import 'package:moto_mender_mvvm/utils/functions/navigation_with_slide.dart';
-import 'package:moto_mender_mvvm/view/screens/order_details_view.dart';
 
 class OrdersView extends StatelessWidget {
   const OrdersView({super.key});
@@ -27,9 +24,9 @@ class OrdersView extends StatelessWidget {
                 child: ListTile(
                   shape: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12)),
-                  title: Text('OrderId : dkljlafjlds'),
-                  subtitle: Text('total : 40324'),
-                  trailing: Text('Status: Preparing'),
+                  title:const  Text('OrderId : dkljlafjlds'),
+                  subtitle:const  Text('total : 40324'),
+                  trailing:const Text('Status: Preparing'),
                 ),
               );
             },

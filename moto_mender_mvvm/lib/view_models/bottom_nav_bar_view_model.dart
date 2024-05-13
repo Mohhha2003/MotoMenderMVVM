@@ -21,7 +21,7 @@ class _BottomNavBarViewModelState extends State<BottomNavBarViewModel> {
       //   Start Chat cubit listener for customer support
       context.read<ChatCubit>().connectSocket();
       context.read<ChatCubit>().adminActive();
-      context.read<ChatCubit>().listenChatRoomActive(context: context);
+      context.read<ChatCubit>().listenToUserJoin(context: context);
     }
     super.initState();
   }

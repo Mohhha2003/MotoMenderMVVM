@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moto_mender_mvvm/utils/functions/dialog_utils.dart';
+import 'package:moto_mender_mvvm/utils/functions/show_loading.dart';
 import 'package:moto_mender_mvvm/utils/functions/floating_bottom_sheet.dart';
+import 'package:moto_mender_mvvm/utils/functions/show_ratting_dialog.dart';
 import 'package:moto_mender_mvvm/view/screens/support_service_view.dart';
 import 'package:moto_mender_mvvm/view/widgets/empty_widgets.dart';
 import 'package:moto_mender_mvvm/view_models/support_view_model/cubit/chat_cubit.dart';
@@ -38,8 +39,10 @@ class SupportViewModel extends StatelessWidget {
           showFloatingBottomSheet(
               text: state.errorMessage ?? 'unkown error', context: context);
         } else if (state.status == ChatStatus.chatRoomSuccess) {
+        } else if (state.status == ChatStatus.failed) {
+          showFloatingBottomSheet(text: state.errorMessage!, context: context);
         } else if (state.status == ChatStatus.sessionEnd) {
-          showLoading(context);
+          showRattingDilog(context);
         }
       },
     );

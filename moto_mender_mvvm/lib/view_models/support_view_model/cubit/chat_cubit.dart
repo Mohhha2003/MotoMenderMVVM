@@ -75,7 +75,12 @@ class ChatCubit extends Cubit<ChatState> {
 
   // SOCKET EMIITERS
   void joinChatRoom({required String chatRoomId}) {
+    // emit(state.copyWith(chatRoomId: chatRoomId));
     socketIo.emit('joinRoom', {chatRoomId});
+  }
+
+  void createRoom() {
+    socketIo.emit('createRoom', {});
   }
 
   void adminActive() {
@@ -92,13 +97,28 @@ class ChatCubit extends Cubit<ChatState> {
 
   void userDisconnected() {
     socketIo.disconnect();
+    if (CacheHelper.currentUser.role == 'admin') {
+      adminActive();
+    }
+  }
+
+  void adminJoin() {
+    socketIo.emit('adminJoin');
   }
 
   // SOKCET LISTENERS
-  void listenChatRoomActive({required BuildContext context}) {
-    socketIo.on('chatRoomActive', (chatRoomId) {
-      joinChatRoom(chatRoomId: chatRoomId);
+  void listenToUserJoin({required BuildContext context}) {
+    socketIo.on('userJoined', (chatRoomId) {
+      print('joind');
       navigationWithSlide(context, const SupportViewModel());
+      socketIo.emit('adminJoin');
+    });
+  }
+
+  void listenSessionEnd() {
+    print('Endded');
+    socketIo.on('sessionEnd', (data) {
+      emit(state.copyWith(status: ChatStatus.sessionEnd, chatRoomId: ''));
     });
   }
 
@@ -110,6 +130,7 @@ class ChatCubit extends Cubit<ChatState> {
   }
 
   void listenUserTyping() {
+    print('Typing');
     socketIo.on('typing', (data) {
       emit(state.copyWith(isUserTyping: true));
     });
@@ -129,67 +150,18 @@ class ChatCubit extends Cubit<ChatState> {
     });
   }
 
-  // //   Socket Class Implement
+  void listenToRoomCreated() {
+    socketIo.on(
+        'createRoom',
+        (roomId) => emit(state.copyWith(
+            chatRoomId: roomId.toString(),
+            status: ChatStatus.chatRoomSuccess)));
+  }
 
-  // void socketConnect() {
-  //   isSocketConnected = socket.connect();
-  //   if (isSocketConnected) {
-  //     emit(state.copyWith(status: ChatStatus.chatRoomSuccess));
-  //   } else {
-  //     emit(state.copyWith(status: ChatStatus.failed));
-  //   }
-  // }
-  // //   Socket Emitters
-
-  // void joinRoom(String chatRoomId) {
-  //   socket.joinChatRoom(chatRoomId: chatRoomId);
-  // }
-
-  // void adminActive() {
-  //   socket.adminActive();
-  // }
-
-  // void userIsTyping() {
-  //   socket.userIsTyping();
-  // }
-
-  // void userStopTyping() {
-  //   socket.userStopTyping();
-  // }
-
-  // //   Socket Listeners
-
-  // void listenChatRoomActive(BuildContext context) {
-  //   socket.listenChatRoomActive(
-  //     callback: (chatRoomId) {
-  //       emit(state.copyWith(
-  //           chatRoomId: chatRoomId, status: ChatStatus.chatRoomSuccess));
-  //       navigationWithSlide(context, const SupportViewModel());
-  //     },
-  //   );
-  // }
-
-  // void listenToMessage() {
-  //   socket.listenToMessage(callback: (message) {
-  //     ChatState newState = state.addMessage(message);
-  //     emit(newState.copyWith(status: ChatStatus.messageReceived));
-  //   });
-  // }
-
-  //   void listenUserTyping() {
-  //     socket.listenUserTyping(
-  //       callback: (p0) {
-  //      cubit.  emit(state.copyWith(isUserTyping: true));
-  //         print('user is typing');
-  //       },
-  //     );
-  //   }
-
-  // void listeUserStopTyping() {
-  //   socket.listenUserStopTyping(
-  //     callback: (p0) {
-  //       emit(state.copyWith(isUserTyping: false));
-  //     },
-  //   );
-  // }
+  void listenToError() {
+    socketIo.on(
+        'error',
+        (errorMessage) => emit(state.copyWith(
+            errorMessage: errorMessage, status: ChatStatus.failed)));
+  }
 }

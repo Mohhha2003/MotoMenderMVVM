@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moto_mender_mvvm/core/api/dio_consumer.dart';
 import 'package:moto_mender_mvvm/models/cart_model/cart_product_list_model.dart';
 import 'package:moto_mender_mvvm/repos/orders_repo.dart';
-import 'package:moto_mender_mvvm/utils/functions/dialog_utils.dart';
+import 'package:moto_mender_mvvm/utils/functions/show_loading.dart';
 import 'package:moto_mender_mvvm/utils/functions/floating_bottom_sheet.dart';
 import 'package:moto_mender_mvvm/utils/functions/navigation_with_slide_replacment.dart';
 import 'package:moto_mender_mvvm/view/screens/confirm_order_view.dart';

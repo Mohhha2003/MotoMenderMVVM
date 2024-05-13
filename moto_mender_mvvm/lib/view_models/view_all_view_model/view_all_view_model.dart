@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moto_mender_mvvm/core/get_it/get_it.dart';
 import 'package:moto_mender_mvvm/repos/store_repo.dart';
-import 'package:moto_mender_mvvm/utils/functions/dialog_utils.dart';
+import 'package:moto_mender_mvvm/utils/functions/show_loading.dart';
 import 'package:moto_mender_mvvm/utils/functions/floating_bottom_sheet.dart';
 import 'package:moto_mender_mvvm/view/screens/view_all_view.dart';
 import 'package:moto_mender_mvvm/view_models/view_all_view_model/cubit/view_all_cubit.dart';

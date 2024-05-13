@@ -17,19 +17,28 @@ class SupportView extends StatefulWidget {
 }
 
 class _SupportViewState extends State<SupportView> {
+  late ChatCubit _chatCubit;
   @override
   void initState() {
-    context.read<ChatCubit>().listenToMessages();
-    context.read<ChatCubit>().listenUserTyping();
-    context.read<ChatCubit>().listenUserStopTyping();
-
+    _chatCubit = context.read<ChatCubit>();
+    _chatCubit.listenToMessages(); // Use null-safe operator
+    _chatCubit.listenUserTyping();
+    _chatCubit.listenUserStopTyping();
+    _chatCubit.listenSessionEnd();
+    _chatCubit.listenToError();
     super.initState();
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _chatCubit = context.read<ChatCubit>(); // Assign ChatCubit reference
+  }
+
+  @override
   void dispose() {
-    context.read<ChatCubit>().userDisconnected();
     super.dispose();
+    _chatCubit.userDisconnected();
   }
 
   @override
